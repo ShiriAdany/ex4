@@ -9,11 +9,11 @@
 
 class Exception: public std::exception
 {
-    class DeckFileNotFound();
+    class DeckFileNotFound{};
 
-    class DeckFileFormatError();
+    class DeckFileFormatError{};
 
-    class DeckFileInvalidSize();
+    class DeckFileInvalidSize{};
 
 };
 #endif //EX4_EXCEPTION_H

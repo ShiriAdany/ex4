@@ -7,16 +7,18 @@
 
 #include "Player.h"
 #include <string.h>
+#include <sstream>
+
 
 class Rogue : public Player
 {
-private:
-
 public:
 
     Rogue(string m_name);
 
     void addCoins(int coins) override;
+
+    void printInfo() const override;
 
     Rogue(const Rogue& other) = default;
     ~Rogue() = default;

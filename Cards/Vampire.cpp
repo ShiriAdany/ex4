@@ -4,7 +4,7 @@
 
 #include "Vampire.h"
 
-Vampire::Vampire() {
+Vampire::Vampire() : Card(CardType::Vampire){
     m_force= DEFAULT_FORCE;
     m_loot = DEFAULT_LOOT;
     m_damage = DEFAULT_DAMAGE;
@@ -12,8 +12,7 @@ Vampire::Vampire() {
 
 void Vampire::printInfo() {
     bool isDragon = false;
-    std::ostream stream;
-    printMonsterDetails(stream, m_force,m_damage,m_loot, isDragon);
+    printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
 void Vampire::applyEncounter(Player &player) const {
@@ -24,6 +23,6 @@ void Vampire::applyEncounter(Player &player) const {
     }
     else{
         player.damage(m_damage);
-        player.damageForce(1);
+        player.decreaseForce(1);
     }
 }

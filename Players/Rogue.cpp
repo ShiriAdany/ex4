@@ -19,7 +19,6 @@ Rogue::addCoins(int coins)
 
 void Rogue::printInfo() const {
     std::ostream stream;
-    printPlayerDetails(stream,m_name, "Rogue",m_level,m_force,m_HP,m_coins);
+    printPlayerDetails(stream,m_name, m_job,m_level,m_force,m_HP,m_coins);
 }
-
 

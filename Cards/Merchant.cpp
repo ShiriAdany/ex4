@@ -4,16 +4,27 @@
 
 #include "Merchant.h"
 using std::stoi;
+using std::cin;
+
+
+Merchant::Merchant() : Card(CardType::Merchant) {
+}
+
+void Merchant::applyEncounter(Player &player){
+    Merchant::makeTrade(player);
+}
+
 
 int Merchant::getPlayerChoice(Player &player) {
-    string input;
+    std::string input;
     int choice;
-
     bool endTurn = false;
+
     do{
-        cin.getline(input, 1);
+
+        std::getline(cin, input);
         choice = stoi(input);
-        if(choice >= action::Options || choice < 0)
+        if(choice >= Action::Number_Of_Options || choice < 0)
         {
             printInvalidInput();
         }
@@ -28,18 +39,19 @@ int Merchant::getPlayerChoice(Player &player) {
 
 
 void Merchant::makeTrade(Player &player) {
-    std::ostream stream;
-    printMerchantInitialMessageForInteractiveEncounter(stream,Player &player,player.m_coins);
-    int choice = getPlayerChoice(player);
+    printMerchantInitialMessageForInteractiveEncounter(std::cout,
+                                                       player.getName(),
+                                                       player.getCoins());
+    int choice = Merchant::getPlayerChoice(player);
     int cost =0 ;
 
     switch(choice){
-        case action::Nothing:
+        case Action::Nothing:
         {
             break;
         }
 
-        case action::Health_Potion:
+        case Action::Health_Potion:
         {
             if(player.pay(HEALTH_POTION_COST))
             {
@@ -47,12 +59,12 @@ void Merchant::makeTrade(Player &player) {
                 player.heal(1);
             }
             else{
-                printMerchantInsufficientCoins(stream);
+                printMerchantInsufficientCoins(std::cout);
             }
             break;
         }
 
-        case action::Force_Boost:
+        case Action::Force_Boost:
         {
             if(player.pay(FORCE_BOOST_COST))
             {
@@ -60,13 +72,16 @@ void Merchant::makeTrade(Player &player) {
                 player.buff(1);
             }
             else{
-                printMerchantInsufficientCoins(stream);
+                printMerchantInsufficientCoins(std::cout);
             }
             break;
         }
+
         default:
             break;
     }
-    printMerchantSummary(stream,player.m_name,choice,cost);
+    printMerchantSummary(std::cout,player.getName(),choice,cost);
 }
+
+
 

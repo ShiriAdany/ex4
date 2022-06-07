@@ -6,13 +6,17 @@
 #define EX4_MERCHANT_H
 
 #include "Card.h"
+#include <iostream>
+#include <string.h>
 
-enum class Action {Nothing, Health_Potion, Force_Boost, Options};
+enum Action:int {Nothing, Health_Potion, Force_Boost, Number_Of_Options};
 
 class Merchant : public Card{
 
 public:
     Merchant();
+
+    void applyEncounter(Player& player) override;
 
     int getPlayerChoice(Player &player);
 
@@ -23,8 +27,9 @@ public:
     Merchant& operator=(const Merchant& other) = default;
 
 private:
-    static int HEALTH_POTION_COST 5;
-    static int FORCE_BOOST_COST 10;
+
+    static const int HEALTH_POTION_COST = 5;
+    static const int FORCE_BOOST_COST = 10;
 };
 
 

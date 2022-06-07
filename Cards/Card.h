@@ -17,7 +17,7 @@
  *  HEAL - Increase your player's HP by 'm_heal' points  of CardStats (no more than maxHP points).
  *  TREASURE - Get 'm_profit' coins of CardStats.
 */
-enum class CardType {Battle, Buff, Heal, Treasure}; // The type of the Card
+enum class CardType {Goblin,Vampire,Dragon, Merchant, Pitfall, Treasure, Barfight, Fairy}; // The type of the Card
 
 class Card {
 public:
@@ -29,7 +29,7 @@ public:
      * @return
      *      A new instance of Card.
     */
-    Card(CardType type, const CardStats& stats);
+    Card(CardType type);
 
 
     /*
@@ -39,25 +39,7 @@ public:
      * @return
      *      void
     */
-    void applyEncounter(Player& player) const;
-
-
-    /*
-     * Prints the card info:
-     *
-     * @return
-     *      void
-    */
-    void printInfo() const;
-
-    // finds the type of a card
-    //CardType getType() const;
-
-    /*
-     * C'tor to the "default card" - Treasure card that gives 0 coins
-    */
-    Card(): m_effect(CardType::Treasure), m_stats() {}
-
+    virtual void applyEncounter(Player& player) =0;
 
     /*
      * Here we are explicitly telling the compiler to use the default methods
@@ -68,9 +50,7 @@ public:
 
 
 protected:
-    CardType m_effect;
-    CardStats m_stats;
-
+    CardType m_type;
 };
 
 

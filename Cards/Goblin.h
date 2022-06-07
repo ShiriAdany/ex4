@@ -12,7 +12,7 @@ class Goblin : public Card
 public:
     Goblin();
 
-    void applyEncounter(Player &player) const override;
+    void applyEncounter(Player &player) const;
 
     void printInfo();
 
@@ -25,8 +25,8 @@ private:
     int m_loot;
     int m_damage;
 
-    static int DEFAULT_FORCE 6;
-    static int DEFAULT_LOOT 2;
-    static int DEFAULT_DAMAGE 10;
+    static const int DEFAULT_FORCE = 6;
+    static const int DEFAULT_LOOT = 2;
+    static const int DEFAULT_DAMAGE = 10;
 };
 #endif //EX4_GOBLIN_H

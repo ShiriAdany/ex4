@@ -4,7 +4,7 @@
 
 #include "Goblin.h"
 
-Goblin::Goblin() {
+Goblin::Goblin() : Card(CardType::Goblin) {
     m_force= DEFAULT_FORCE;
     m_loot = DEFAULT_LOOT;
     m_damage = DEFAULT_DAMAGE;
@@ -12,8 +12,7 @@ Goblin::Goblin() {
 
 void Goblin::printInfo() {
     bool isDragon = false;
-    std::ostream stream;
-    printMonsterDetails(stream, m_force,m_damage,m_loot, isDragon)
+    printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
 void Goblin::applyEncounter(Player &player) const {

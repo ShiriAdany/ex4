@@ -4,7 +4,7 @@
 
 #include "Dragon.h"
 
-Dragon::Dragon() {
+Dragon::Dragon() : Card(CardType::Dragon){
     m_force= DEFAULT_FORCE;
     m_loot = DEFAULT_LOOT;
     m_damage = DEFAULT_DAMAGE;

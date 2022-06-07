@@ -134,7 +134,7 @@ public:
     Player& operator=(const Player& other) = default;
 
 
-    private:
+    protected:
 
     std::string m_name; // the name of the player
     int m_level; // the level of the player. in range of [1,10].
@@ -143,6 +143,8 @@ public:
     int m_maxHP; // maximal health points
     int m_force; // the force of the player.
 
+    private:
+    
     static const int DEFAULT_MAX_HP = 100;
     static const int DEFAULT_FORCE = 5;
     static const int TOP_LEVEL = 10;

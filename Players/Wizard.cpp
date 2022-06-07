@@ -4,15 +4,13 @@
 
 #include "Wizard.h"
 
-Wizard::Wizard(std::string name)
-{
-    Player(name);
-}
+Wizard::Wizard(std::string name): Player(name, player_job::wizard){}
+
 
 void Wizard::heal(int hp)
 {
     while(hp > 0){
-        if(m_HP < m_maxHP) {
+        if(m_HP < MAX_HP) {
             m_HP += 2;
             hp--;
         }

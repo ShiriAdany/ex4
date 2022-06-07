@@ -48,8 +48,8 @@ public:
     */
     void buff(int force);
 
-    
-    /*
+
+    virtual /*
      * Raises the HP of the player according to the given argument, until the maxHP:
      * @param hp - the quantity of HP to raise.
      *
@@ -73,12 +73,12 @@ public:
     bool isKnockedOut() const;
 
 
-    /*
+     /*
      * Adds coins to the player's coins bag.
      *
      * @param coins - the amount of coins to add.
     */
-    void addCoins(int coins);
+     virtual void addCoins(int coins);
 
 
     /*
@@ -101,11 +101,16 @@ public:
     */
     int getAttackStrength() const;
 
+    std::string getName() const;
+
+    int getCoins() const;
+
+    void decreaseForce(int damage);
 
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
-    virtual ~Player();
+    ~Player() = default;
     Player(const Player& other) = default;
     Player& operator=(const Player& other) = default;
 
@@ -118,11 +123,12 @@ public:
     int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
     int m_coins; // number of coins
     int m_force; // the force of the player
+    static const int MAX_HP = 100;
 
-    private:
+
+private:
     
     static const int TOP_LEVEL = 10;
-    static const int MAX_HP = 100;
     static const int DEFAULT_FORCE = 5;
     static const int DEFAULT_COINS = 10;
 

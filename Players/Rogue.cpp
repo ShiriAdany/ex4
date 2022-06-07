@@ -5,11 +5,10 @@
 #include "Rogue.h"
 using std::string;
 
-Rogue::Rogue(string name) {
-    Player{name};
+Rogue::Rogue(string name): Player(name, player_job::rogue) {
 }
 
-Rogue::addCoins(int coins)
+void Rogue::addCoins(int coins)
 {
     if(coins>0)
     {
@@ -18,7 +17,7 @@ Rogue::addCoins(int coins)
 }
 
 void Rogue::printInfo() const {
-    std::ostream stream;
-    printPlayerDetails(stream,m_name, m_job,m_level,m_force,m_HP,m_coins);
+    printPlayerDetails(std::cout,m_name, "Rogue",m_level,m_force,m_HP,m_coins);
 }
+
 

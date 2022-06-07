@@ -14,11 +14,11 @@ class Rogue : public Player
 {
 public:
 
-    Rogue(string m_name);
+    Rogue(std::string m_name);
 
     void addCoins(int coins) override;
 
-    void printInfo() const override;
+    void printInfo() const;
 
     Rogue(const Rogue& other) = default;
     ~Rogue() = default;

@@ -5,7 +5,7 @@
 #ifndef EX4_WIZARD_H
 #define EX4_WIZARD_H
 
-#include "Player.h"
+#include "Card.h"
 
 class Wizard : public Player
 {

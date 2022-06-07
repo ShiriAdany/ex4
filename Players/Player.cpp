@@ -7,7 +7,7 @@
 #include <iostream>
 
 
-explicit Player::Player(std::string name, player_job job): m_name(name),
+Player::Player(std::string name, player_job job): m_name(name),
                                                            m_job(job),
                                                            m_level(1),
                                                            m_HP(MAX_HP),
@@ -102,3 +102,23 @@ int Player::getAttackStrength() const
 {
     return (m_force + m_level);
 }
+
+std::string Player::getName() const{
+    return m_name;
+}
+
+int Player::getCoins() const{
+    return m_coins;
+}
+
+void Player::decreaseForce(int damage) {
+    if(m_force -damage >= 0)
+    {
+        m_force -=damage;
+    }
+    else{
+        m_force=0;
+    }
+}
+
+

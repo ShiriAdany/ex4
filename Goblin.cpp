@@ -12,6 +12,7 @@ Goblin::Goblin() {
 
 void Goblin::printInfo() {
     bool isDragon = false;
+    std::ostream stream;
     printMonsterDetails(stream, m_force,m_damage,m_loot, isDragon)
 }
 

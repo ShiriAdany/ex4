@@ -12,6 +12,7 @@ Vampire::Vampire() {
 
 void Vampire::printInfo() {
     bool isDragon = false;
+    std::ostream stream;
     printMonsterDetails(stream, m_force,m_damage,m_loot, isDragon);
 }
 

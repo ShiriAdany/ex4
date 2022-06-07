@@ -7,32 +7,13 @@
 #include <iostream>
 
 
-Player::Player(std::string name, int maxHP, int force): m_name(name),
-                                                        m_level(1),
-                                                        m_HP(DEFAULT_MAX_HP),
-                                                        m_coins(0)
-{
-    if(maxHP>0){
-        m_maxHP = maxHP;
-    }
-    else{
-        m_maxHP = DEFAULT_MAX_HP;
-    }
-
-    if(force > 0){
-        m_force = force;
-    }
-    else{
-        m_force = DEFAULT_FORCE;
-    }
-    m_HP = m_maxHP;
-}
-
-
-void Player::printInfo() const
-{
-    printPlayerInfo(m_name.c_str(), m_level, m_force, m_HP, m_coins);
-}
+explicit Player::Player(std::string name, player_job job): m_name(name),
+                                                           m_job(job),
+                                                           m_level(1),
+                                                           m_HP(MAX_HP),
+                                                           m_coins(DEFAULT_COINS),
+                                                           m_force(DEFAULT_FORCE)
+{}
 
 
 void Player::levelUp()
@@ -60,8 +41,8 @@ void Player::buff(int force)
 void Player::heal(int hp)
 {
     while(hp > 0){
-        if(m_HP < m_maxHP) {
-            m_HP ++;
+        if(m_HP < MAX_HP) {
+            m_HP++;
             hp--;
         }
 
@@ -76,7 +57,7 @@ void Player::damage(int hp)
 {
     while(hp > 0){
         if(m_HP > 0) {
-            m_HP-- ;
+            m_HP--;
             hp--;
         }
 
@@ -89,7 +70,7 @@ void Player::damage(int hp)
 
 bool Player::isKnockedOut() const
 {
-    if(m_HP == 0) {
+    if(m_HP == 0){
         return true;
     }
     return false;
@@ -106,11 +87,11 @@ void Player::addCoins(int coins)
 
 bool Player::pay(int coins)
 {
-    if(m_coins < coins) {
+    if(m_coins < coins){
         return false;
     }
 
-    if(coins > 0) {
+    if(coins > 0){
         m_coins -= coins;
     }
     return true;

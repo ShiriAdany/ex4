@@ -125,4 +125,8 @@ int Player::getHP() const {
     return m_HP;
 }
 
+player_job Player::getJob() const {
+    return m_job;
+}
+
 

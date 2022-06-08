@@ -107,6 +107,8 @@ public:
 
     int getHP() const;
 
+    player_job getJob() const;
+
     void decreaseForce(int damage);
 
     /*

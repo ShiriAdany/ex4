@@ -99,7 +99,7 @@ public:
      *
      * @return The attack strength.
     */
-    int getAttackStrength() const;
+    virtual int getAttackStrength() const;
 
     std::string getName() const;
 

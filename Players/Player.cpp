@@ -121,4 +121,8 @@ void Player::decreaseForce(int damage) {
     }
 }
 
+int Player::getHP() const {
+    return m_HP;
+}
+
 

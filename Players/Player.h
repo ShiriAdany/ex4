@@ -105,6 +105,8 @@ public:
 
     int getCoins() const;
 
+    int getHP() const;
+
     void decreaseForce(int damage);
 
     /*

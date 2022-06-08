@@ -4,12 +4,14 @@
 
 #include "Fighter.h"
 
-Fighter::Fighter(std::string name)
-{
-    Player(name);
-}
+Fighter::Fighter(std::string name): Player(name, player_job::fighter){}
 
-int getAttackStrength() const override
-{
+
+int Fighter::getAttackStrength() const {
     return(2*m_force + m_level);
 }
+
+void Fighter::PrintInfo() const {
+    printPlayerDetails(std::cout, m_name,"Fighter",m_level,m_force,m_HP,m_coins);
+}
+

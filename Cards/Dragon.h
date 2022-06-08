@@ -12,9 +12,9 @@ class Dragon : public Card
 public:
     Dragon();
 
-    void applyEncounter(Player &player) const override;
+    void applyEncounter(Player &player) override;
 
-    void printInfo();
+    void printInfo() const;
 
     Dragon(const Dragon& other) = default;
     ~Dragon() = default;

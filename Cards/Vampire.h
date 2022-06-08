@@ -12,9 +12,9 @@ class Vampire : public Card
 public:
     Vampire();
 
-    void applyEncounter(Player &player) const;
+    void applyEncounter(Player &player) override;
 
-    void printInfo();
+    void printInfo() const;
 
     Vampire(const Vampire& other) = default;
     ~Vampire() = default;

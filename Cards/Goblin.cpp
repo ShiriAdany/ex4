@@ -15,7 +15,7 @@ void Goblin::printInfo() {
     printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
-void Goblin::applyEncounter(Player &player) const {
+void Goblin::applyEncounter(Player &player){
     if(player.getAttackStrength() >= m_force)
     {
         player.levelUp();

@@ -18,9 +18,9 @@ public:
 
     void applyEncounter(Player& player) override;
 
-    int getPlayerChoice(Player &player);
+    static int getPlayerChoice(Player &player);
 
-    void makeTrade(Player &player);
+    static void makeTrade(Player &player);
 
     Merchant(const Merchant& other) = default;
     ~Merchant() = default;

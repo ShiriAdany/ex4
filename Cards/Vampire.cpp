@@ -10,12 +10,12 @@ Vampire::Vampire() : Card(CardType::Vampire){
     m_damage = DEFAULT_DAMAGE;
 }
 
-void Vampire::printInfo() {
+void Vampire::printInfo() const {
     bool isDragon = false;
     printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
-void Vampire::applyEncounter(Player &player) const {
+void Vampire::applyEncounter(Player &player){
     if(player.getAttackStrength() >= m_force)
     {
         player.levelUp();

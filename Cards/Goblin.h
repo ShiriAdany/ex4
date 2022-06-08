@@ -12,7 +12,7 @@ class Goblin : public Card
 public:
     Goblin();
 
-    void applyEncounter(Player &player) const;
+    void applyEncounter(Player &player) override;
 
     void printInfo();
 

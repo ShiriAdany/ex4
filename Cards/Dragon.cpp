@@ -10,20 +10,19 @@ Dragon::Dragon() : Card(CardType::Dragon){
     m_damage = DEFAULT_DAMAGE;
 }
 
-void Dragon::printInfo() {
+void Dragon::printInfo() const {
     bool isDragon = true;
-    std::ostream stream;
-    printMonsterDetails(stream, m_force,m_damage,m_loot, isDragon);
+    printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
-void Dragon::applyEncounter(Player &player) const {
+void Dragon::applyEncounter(Player &player){
     if(player.getAttackStrength() >= m_force)
     {
         player.levelUp();
         player.addCoins(m_loot);
     }
     else{
-        int allHP = player.m_HP;
+        int allHP = player.getHP();
         player.damage(allHP);
     }
 }

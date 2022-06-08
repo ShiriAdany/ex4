@@ -21,3 +21,7 @@ void Wizard::heal(int hp)
     }
 }
 
+void Wizard::printInfo() const {
+    printPlayerDetails(std::cout,m_name,"Wizard",m_level,m_force,m_HP,m_coins);
+}
+

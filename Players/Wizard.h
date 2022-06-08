@@ -16,6 +16,8 @@ class Wizard : public Player
         Wizard& operator=(const Wizard& other) = default;
 
         void heal(int hp) override;
+        void printInfo() const;
+
 };
 
 

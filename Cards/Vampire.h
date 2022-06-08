@@ -5,25 +5,22 @@
 #ifndef EX4_VAMPIRE_H
 #define EX4_VAMPIRE_H
 
-#include "Card.h"
+#include "Battle.h"
 
-class Vampire : public Card
+class Vampire : public Battle
 {
 public:
     Vampire();
 
     void applyEncounter(Player &player) override;
 
-    void printInfo() const;
+    void printInfo() const override;
 
     Vampire(const Vampire& other) = default;
     ~Vampire() = default;
     Vampire& operator=(const Vampire& other) = default;
 
 private:
-    int m_force;
-    int m_loot;
-    int m_damage;
 
     static const int DEFAULT_FORCE =  10;
     static const int DEFAULT_LOOT = 2;

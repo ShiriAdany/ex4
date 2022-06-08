@@ -4,13 +4,13 @@
 
 #include "Goblin.h"
 
-Goblin::Goblin() : Card(CardType::Goblin) {
+Goblin::Goblin() : Battle(CardType::Goblin) {
     m_force= DEFAULT_FORCE;
     m_loot = DEFAULT_LOOT;
     m_damage = DEFAULT_DAMAGE;
 }
 
-void Goblin::printInfo() {
+void Goblin::printInfo() const {
     bool isDragon = false;
     printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }

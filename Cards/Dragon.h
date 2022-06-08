@@ -5,25 +5,22 @@
 #ifndef EX4_DRAGON_H
 #define EX4_DRAGON_H
 
-#include "Card.h"
+#include "Battle.h"
 
-class Dragon : public Card
+class Dragon : public Battle
 {
 public:
     Dragon();
 
     void applyEncounter(Player &player) override;
 
-    void printInfo() const;
+    void printInfo() const override;
 
     Dragon(const Dragon& other) = default;
     ~Dragon() = default;
     Dragon& operator=(const Dragon& other) = default;
 
 private:
-    int m_force;
-    int m_loot;
-    int m_damage;
 
     static const int DEFAULT_FORCE = 25;
     static const int DEFAULT_LOOT = 1000;

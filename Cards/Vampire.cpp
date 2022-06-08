@@ -4,7 +4,7 @@
 
 #include "Vampire.h"
 
-Vampire::Vampire() : Card(CardType::Vampire){
+Vampire::Vampire() : Battle(CardType::Vampire){
     m_force= DEFAULT_FORCE;
     m_loot = DEFAULT_LOOT;
     m_damage = DEFAULT_DAMAGE;

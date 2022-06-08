@@ -5,4 +5,22 @@
 #ifndef EX4_BARFIGHT_H
 #define EX4_BARFIGHT_H
 
+#include "Card.h"
+
+class Barfight : public Card{
+public:
+    Barfight();
+
+    void applyEncounter(Player& player) override;
+
+    Barfight(const Barfight& other) = default;
+    ~Barfight() = default;
+    Barfight& operator=(const Barfight& other) = default;
+
+private:
+    int m_damage;
+
+    static const int DEFAULT_DAMAGE = 10;
+
+};
 #endif //EX4_BARFIGHT_H

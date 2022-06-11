@@ -18,11 +18,14 @@ public:
 
     void addCoins(int coins) override;
 
-    void printInfo() const;
 
     Rogue(const Rogue& other) = default;
     ~Rogue() = default;
     Rogue& operator=(const Rogue& other) = default;
+
+protected:
+    friend std::ostream& operator<<(std::ostream& os, const Rogue& player);
+    void printInfo(std::ostream &os) const override;
 
 };
 #endif //EX4_ROGUE_H

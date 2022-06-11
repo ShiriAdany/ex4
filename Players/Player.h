@@ -111,6 +111,7 @@ public:
 
     void decreaseForce(int damage);
 
+
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
@@ -119,7 +120,7 @@ public:
     Player& operator=(const Player& other) = default;
 
 
-    protected:
+protected:
 
     std::string m_name; // the name of the player, maximum 15 letters
     player_job m_job; // a player's job can be wizard, fighter or rogue
@@ -129,6 +130,8 @@ public:
     int m_force; // the force of the player
     static const int MAX_HP = 100;
 
+    friend std::ostream& operator<<(std::ostream& os, const Player& player);
+    virtual void printInfo(std::ostream &os) const = 0;
 
 private:
     

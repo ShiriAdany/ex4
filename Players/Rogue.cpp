@@ -16,8 +16,11 @@ void Rogue::addCoins(int coins)
     }
 }
 
-void Rogue::printInfo() const {
-    printPlayerDetails(std::cout,m_name, "Rogue",m_level,m_force,m_HP,m_coins);
+void Rogue::printInfo(std::ostream &os) const {
+    printPlayerDetails(os,m_name, "Rogue",m_level,m_force,m_HP,m_coins);
 }
 
-
+std::ostream &operator<<(std::ostream &os, const Rogue &player) {
+    player.printInfo(os);
+    return os;
+}

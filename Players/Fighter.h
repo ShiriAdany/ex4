@@ -9,7 +9,7 @@
 
 class Fighter : public Player
 {
-    public:
+public:
         Fighter(std::string name);
 
         ~Fighter() = default;
@@ -18,7 +18,9 @@ class Fighter : public Player
 
         int getAttackStrength() const override;
 
-        void PrintInfo() const;
+protected:
+    friend std::ostream& operator<<(std::ostream& os, const Fighter& player);
+    void printInfo(std::ostream &os) const override;
 };
 
 

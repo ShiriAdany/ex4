@@ -16,11 +16,12 @@ class Wizard : public Player
         Wizard& operator=(const Wizard& other) = default;
 
         void heal(int hp) override;
-        void printInfo() const;
+
+protected:
+    friend std::ostream& operator<<(std::ostream& os, const Wizard& player);
+    void printInfo(std::ostream &os) const override;
 
 };
-
-
 
 
 #endif //EX4_WIZARD_H

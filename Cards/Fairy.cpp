@@ -8,7 +8,7 @@ Fairy::Fairy() : Card(CardType::Fairy){
     m_heal = DEFAULT_HEAL;
 }
 
-void Fairy::applyEncounter(Player &player) {
+void Fairy::applyEncounter(Player &player) const {
     bool isWizard = false;
     if(player.getJob() == player_job::wizard)
     {

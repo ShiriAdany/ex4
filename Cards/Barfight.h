@@ -11,7 +11,7 @@ class Barfight : public Card{
 public:
     Barfight();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(Player& player) const override;
 
     Barfight(const Barfight& other) = default;
     ~Barfight() override = default;

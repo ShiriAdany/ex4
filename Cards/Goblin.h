@@ -12,7 +12,7 @@ class Goblin : public Battle
 public:
     Goblin();
 
-    void applyEncounter(Player &player) override;
+    void applyEncounter(Player &player) const override;
 
     void printInfo() const override;
 

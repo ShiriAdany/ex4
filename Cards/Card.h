@@ -39,7 +39,7 @@ public:
      * @return
      *      void
     */
-    virtual void applyEncounter(Player& player) =0;
+    virtual void applyEncounter(Player& player) const =0;
 
 
     /*

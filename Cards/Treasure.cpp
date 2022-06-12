@@ -8,7 +8,7 @@ Treasure::Treasure() :Card(CardType::Treasure){
     m_coins = DEFAULT_COINS;
 }
 
-void Treasure::applyEncounter(Player &player) {
+void Treasure::applyEncounter(Player &player) const{
     player.addCoins(m_coins);
     printTreasureMessage();
 }

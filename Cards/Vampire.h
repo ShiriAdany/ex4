@@ -12,12 +12,12 @@ class Vampire : public Battle
 public:
     Vampire();
 
-    void applyEncounter(Player &player) override;
+    void applyEncounter(Player &player) const override;
 
     void printInfo() const override;
 
     Vampire(const Vampire& other) = default;
-    ~Vampire() = default;
+    ~Vampire() override = default;
     Vampire& operator=(const Vampire& other) = default;
 
 private:

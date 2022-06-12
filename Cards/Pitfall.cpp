@@ -4,7 +4,7 @@
 
 #include "Pitfall.h"
 
-void Pitfall::applyEncounter(Player &player) {
+void Pitfall::applyEncounter(Player &player) const{
     bool isRogue = true;
     if(player.getJob() != player_job::rogue)
     {

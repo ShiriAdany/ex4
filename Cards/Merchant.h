@@ -16,7 +16,7 @@ class Merchant : public Card{
 public:
     Merchant();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(Player& player) const override;
 
     static int getPlayerChoice(Player &player);
 

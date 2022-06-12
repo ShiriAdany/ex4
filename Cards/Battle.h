@@ -11,7 +11,7 @@ class Battle : public Card
 public:
     Battle(CardType type);
 
-    virtual void applyEncounter(Player& player) =0;
+    virtual void applyEncounter(Player& player) const =0;
 
     Battle(const Battle& other) = default;
     ~Battle() override = default;

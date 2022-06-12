@@ -12,7 +12,7 @@ public:
 
     Pitfall();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(Player& player) const override;
 
     Pitfall(const Pitfall& other) = default;
     ~Pitfall() override = default;

@@ -10,7 +10,7 @@ using std::cin;
 Merchant::Merchant() : Card(CardType::Merchant) {
 }
 
-void Merchant::applyEncounter(Player &player){
+void Merchant::applyEncounter(Player &player) const{
     Merchant::makeTrade(player);
 }
 

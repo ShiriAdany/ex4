@@ -12,7 +12,7 @@ class Fairy : public Card
 public:
     Fairy();
 
-    void applyEncounter(Player& player) override;
+    void applyEncounter(Player& player) const override;
 
     Fairy(const Fairy& other) = default;
     ~Fairy() override = default;

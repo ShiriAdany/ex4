@@ -12,7 +12,7 @@ class Dragon : public Battle
 public:
     Dragon();
 
-    void applyEncounter(Player &player) override;
+    void applyEncounter(Player &player) const override;
 
     void printInfo() const override;
 

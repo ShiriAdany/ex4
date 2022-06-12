@@ -15,7 +15,7 @@ void Vampire::printInfo() const {
     printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
-void Vampire::applyEncounter(Player &player){
+void Vampire::applyEncounter(Player &player) const{
     if(player.getAttackStrength() >= m_force)
     {
         player.levelUp();

@@ -15,7 +15,7 @@ void Dragon::printInfo() const {
     printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
 }
 
-void Dragon::applyEncounter(Player &player){
+void Dragon::applyEncounter(Player &player) const{
     if(player.getAttackStrength() >= m_force)
     {
         player.levelUp();

@@ -21,7 +21,7 @@ protected:
     int m_force;
     int m_loot;
     int m_damage;
-    virtual void printInfo() const =0;
+    virtual void printInfo(std::ostream &os) const =0;
 
 
 };

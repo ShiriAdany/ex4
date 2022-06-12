@@ -16,9 +16,11 @@ void Goblin::applyEncounter(Player &player) const{
     {
         player.levelUp();
         player.addCoins(m_loot);
+        printWinBattle(player.getName(), "Goblin");
     }
     else{
         player.damage(m_damage);
+        printLossBattle(player.getName(), "Goblin");
     }
 }
 

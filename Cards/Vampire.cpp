@@ -16,10 +16,13 @@ void Vampire::applyEncounter(Player &player) const{
     {
         player.levelUp();
         player.addCoins(m_loot);
+        printWinBattle(player.getName(), "Vampire");
     }
     else{
         player.damage(m_damage);
         player.decreaseForce(1);
+        printLossBattle(player.getName(), "Vampire");
+
     }
 }
 

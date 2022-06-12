@@ -10,10 +10,6 @@ Vampire::Vampire() : Battle(CardType::Vampire){
     m_damage = DEFAULT_DAMAGE;
 }
 
-void Vampire::printInfo() const {
-    bool isDragon = false;
-    printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
-}
 
 void Vampire::applyEncounter(Player &player) const{
     if(player.getAttackStrength() >= m_force)
@@ -28,6 +24,8 @@ void Vampire::applyEncounter(Player &player) const{
 }
 
 void Vampire::printInfo(std::ostream &os) const {
+    bool isDragon = false;
     printCardDetails(os,"Vampire");
+    printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
 }

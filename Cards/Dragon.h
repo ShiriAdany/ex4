@@ -14,8 +14,6 @@ public:
 
     void applyEncounter(Player &player) const override;
 
-    void printInfo() const override;
-
     Dragon(const Dragon& other) = default;
     ~Dragon() override = default;
     Dragon& operator=(const Dragon& other) = default;

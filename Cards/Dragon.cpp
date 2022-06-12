@@ -10,10 +10,6 @@ Dragon::Dragon() : Battle(CardType::Dragon){
     m_damage = DEFAULT_DAMAGE;
 }
 
-void Dragon::printInfo() const {
-    bool isDragon = true;
-    printMonsterDetails(std::cout, m_force,m_damage,m_loot, isDragon);
-}
 
 void Dragon::applyEncounter(Player &player) const{
     if(player.getAttackStrength() >= m_force)
@@ -28,6 +24,8 @@ void Dragon::applyEncounter(Player &player) const{
 }
 
 void Dragon::printInfo(std::ostream &os) const {
+    bool isDragon = true;
     printCardDetails(os,"Dragon");
+    printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
 }

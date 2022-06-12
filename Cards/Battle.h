@@ -13,8 +13,6 @@ public:
 
     virtual void applyEncounter(Player& player) =0;
 
-    virtual void printInfo() const =0;
-
     Battle(const Battle& other) = default;
     ~Battle() override = default;
     Battle& operator=(const Battle& other) = default;
@@ -23,6 +21,8 @@ protected:
     int m_force;
     int m_loot;
     int m_damage;
+    virtual void printInfo() const =0;
+
 
 };
 #endif //EX4_BATTLE_H

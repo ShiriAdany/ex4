@@ -19,8 +19,10 @@
 #include "Wizard.h"
 
 #include <fstream>
-#include <queue>
+#include <deque>
 #include <vector>
+#include <memory>
+#include <map>
 
 class Mtmchkin{
 
@@ -33,7 +35,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    Mtmchkin(const std::string fileName);
+    explicit Mtmchkin(const std::string fileName);
     
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -69,19 +71,26 @@ public:
     int getNumberOfRounds() const;
 
 private:
-    std::queue<Card*> m_deck;
-    std::queue<Player*>  m_playersQueue;
+    std::deque<const Card*> m_deck;
+    std::deque<Player*>  m_playersQueue;
     int m_numberOfPlayers;
+    int m_roundCounter;
 
-    void initiateDeck(const std::string fileName);
+    void initiateDeck(std::string fileName);
     void initiatePlayers();
     static int getNumberOfPlayers();
     static std::vector<std::string> getPlayerArguments();
     static void printInvalidNumberOfArgumens();
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
+    void playCard(const Card* card, Player* player);
+//    template<class T>
+//    Card* createInstance();
+//    Card* mapToConstructor(std::string line);
+
 
     static int const NUMBER_OF_ARGUMENTS = 2; //player's name and class
+
 };
 
 

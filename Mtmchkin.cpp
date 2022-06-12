@@ -7,23 +7,63 @@ using std::ifstream;
 using std::string;
 using std::cin;
 
-Mtmchkin::Mtmchkin(const string fileName) {
+Mtmchkin::Mtmchkin(const string fileName): m_roundCounter(0) {
     printStartGameMessage();
-
     initiateDeck(fileName);
     initiatePlayers();
-
 }
+
+//
+//template<typename T>
+//Card* Mtmchkin::createInstance() {
+//    return new T();
+//}
+//
+//
+//Card* Mtmchkin::mapToConstructor(std::string line)
+//{
+//    std::map<std::string, *Card(*)> mapFile;
+//    scriptMap mapFile;
+//    mapFile["Goblin"] = &createInstance;
+//    return mapFile[line];
+//
+//}
+
+//void Mtmchkin::initiateDeck(std::string fileName) {
+//    ifstream source(fileName);
+//    if(!source)
+//    {
+//        throw DeckFileNotFound();
+//    }
+//
+//    char line[256];
+//    int lineNumber = 0;
+//    Card* newCard;
+//    while(source.getline(line, sizeof(line))) {
+//        newCard = mapToConstructor(line);
+//        lineNumber++;
+//        m_deck.push_back(newCard);
+//    }
+//
+//    if(lineNumber < 5)
+//    {
+//        throw DeckFileInvalidSize();
+//    }
+//
+//}
+
+
 
 void Mtmchkin::initiateDeck(const string fileName) {
 
     ifstream source(fileName);
     if(!source)
     {
-        //throw exception
+        throw DeckFileNotFound();
     }
 
     char line[256];
+    int lineNumber = 0;
     while(source.getline(line, sizeof(line)))
     {
         string cardName = line;
@@ -62,9 +102,15 @@ void Mtmchkin::initiateDeck(const string fileName) {
         }
         else
         {
-            //throw error of unknown card type
+            throw DeckFileFormatError(lineNumber);
         }
-        m_deck.push(newCard);
+        lineNumber++;
+        m_deck.push_back(newCard);
+    }
+
+    if(lineNumber < 5)
+    {
+        throw DeckFileInvalidSize();
     }
 }
 
@@ -89,18 +135,21 @@ bool Mtmchkin::isValidArguments(std::vector<string> words)
 {
     string playerName = words[0];
     string playerClass = words[1];
+    std::unique_ptr<Player> newPlayer;
 
     if (validName(playerName)) {
         if (playerClass == "Rogue") {
-            m_playersQueue.push(new Rogue(playerName));
+            std::unique_ptr<Player> newPlayer(new Rogue(playerName));
         } else if (playerClass == "Fighter") {
-            m_playersQueue.push(new Fighter(playerName));
+            std::unique_ptr<Player> newPlayer(new Fighter(playerName));
         } else if (playerClass == "Wizard") {
-            m_playersQueue.push(new Wizard(playerName));
+            std::unique_ptr<Player> newPlayer(new Wizard(playerName));
         } else {
             printInvalidClass();
             return false;
         }
+
+        m_playersQueue.push_back(newPlayer.get());
     } else {
         printInvalidName();
         return false;
@@ -173,6 +222,56 @@ bool Mtmchkin::validName(const std::string& name) {
     }
     return true;
 }
+
+void Mtmchkin::playRound() {
+    printRoundStartMessage(m_roundCounter);
+    Player* currentPlayer;
+    const Card* currentCard;
+    for(Player *p : m_playersQueue)
+    {
+        currentPlayer = m_playersQueue.front();
+        printTurnStartMessage(currentPlayer->getName());
+        currentCard = m_deck.front();
+        playCard(currentCard, currentPlayer);
+
+        m_playersQueue.push_back(currentPlayer);
+        m_deck.push_back(currentCard);
+        if(isGameOver())
+        {
+            printGameEndMessage();
+        }
+    }
+
+
+}
+
+int Mtmchkin::getNumberOfRounds() const {
+    return m_roundCounter;
+}
+
+void Mtmchkin::playCard(const Card* card, Player *player) {
+    card->applyEncounter(*player);
+}
+
+bool Mtmchkin::isGameOver() const {
+    for(Player *p : m_playersQueue)
+    {
+        if(!p->isWinning() || !p->isLosing())
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void Mtmchkin::printLeaderBoard() const {
+
+
+}
+
+
+
+
 
 
 

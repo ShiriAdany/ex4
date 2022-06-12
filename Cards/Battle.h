@@ -16,7 +16,7 @@ public:
     virtual void printInfo() const =0;
 
     Battle(const Battle& other) = default;
-    ~Battle() = default;
+    ~Battle() override = default;
     Battle& operator=(const Battle& other) = default;
 
 protected:

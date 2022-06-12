@@ -17,7 +17,7 @@ public:
     void printInfo() const override;
 
     Dragon(const Dragon& other) = default;
-    ~Dragon() = default;
+    ~Dragon() override = default;
     Dragon& operator=(const Dragon& other) = default;
 
 private:

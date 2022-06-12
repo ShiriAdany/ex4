@@ -17,7 +17,7 @@ public:
     void printInfo() const override;
 
     Goblin(const Goblin& other) = default;
-    ~Goblin() = default;
+    ~Goblin() override = default;
     Goblin& operator=(const Goblin& other) = default;
 
 private:

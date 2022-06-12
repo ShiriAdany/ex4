@@ -23,7 +23,7 @@ public:
     static void makeTrade(Player &player);
 
     Merchant(const Merchant& other) = default;
-    ~Merchant() = default;
+    ~Merchant() override = default;
     Merchant& operator=(const Merchant& other) = default;
 
 private:

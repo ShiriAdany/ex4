@@ -15,7 +15,7 @@ public:
     void applyEncounter(Player& player) override;
 
     Fairy(const Fairy& other) = default;
-    ~Fairy() = default;
+    ~Fairy() override = default;
     Fairy& operator=(const Fairy& other) = default;
 
 

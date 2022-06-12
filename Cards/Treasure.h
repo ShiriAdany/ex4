@@ -14,7 +14,7 @@ public:
     void applyEncounter(Player& player) override;
 
     Treasure(const Treasure& other) = default;
-    ~Treasure() = default;
+    ~Treasure() override = default;
     Treasure& operator=(const Treasure& other) = default;
 
 private:

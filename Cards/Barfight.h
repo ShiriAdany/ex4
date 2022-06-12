@@ -14,7 +14,7 @@ public:
     void applyEncounter(Player& player) override;
 
     Barfight(const Barfight& other) = default;
-    ~Barfight() = default;
+    ~Barfight() override = default;
     Barfight& operator=(const Barfight& other) = default;
 
 private:

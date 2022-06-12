@@ -11,7 +11,7 @@ class Wizard : public Player
 {
     public:
         Wizard(std::string name);
-        ~Wizard() = default;
+        ~Wizard() override = default;
         Wizard(const Wizard& other) = default;
         Wizard& operator=(const Wizard& other) = default;
 

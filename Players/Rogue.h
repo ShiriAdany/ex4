@@ -19,7 +19,7 @@ public:
     void addCoins(int coins) override;
 
     Rogue(const Rogue& other) = default;
-    ~Rogue() = default;
+    ~Rogue() override = default;
     Rogue& operator=(const Rogue& other) = default;
 
 protected:

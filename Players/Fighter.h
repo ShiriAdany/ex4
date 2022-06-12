@@ -12,7 +12,7 @@ class Fighter : public Player
 public:
         Fighter(std::string name);
 
-        ~Fighter() = default;
+        ~Fighter() override = default;
         Fighter(const Fighter& other) = default;
         Fighter& operator=(const Fighter& other) = default;
 

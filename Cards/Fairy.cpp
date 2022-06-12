@@ -17,3 +17,11 @@ void Fairy::applyEncounter(Player &player) {
     }
     printFairyMessage(isWizard);
 }
+
+void Fairy::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Fairy");
+    printEndOfCardDetails(os);
+}
+
+
+

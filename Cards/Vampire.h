@@ -21,6 +21,7 @@ public:
     Vampire& operator=(const Vampire& other) = default;
 
 private:
+    void printInfo(std::ostream &os) const override;
 
     static const int DEFAULT_FORCE =  10;
     static const int DEFAULT_LOOT = 2;

@@ -22,6 +22,8 @@ public:
 
 private:
 
+    void printInfo(std::ostream &os) const override;
+
     static const int DEFAULT_FORCE = 25;
     static const int DEFAULT_LOOT = 1000;
     static const int DEFAULT_DAMAGE = 0;

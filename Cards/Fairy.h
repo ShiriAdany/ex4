@@ -18,9 +18,10 @@ public:
     ~Fairy() = default;
     Fairy& operator=(const Fairy& other) = default;
 
+
 private:
     int m_heal;
-
+    void printInfo(std::ostream &os) const override;
     static const int DEFAULT_HEAL = 10;
 
 };

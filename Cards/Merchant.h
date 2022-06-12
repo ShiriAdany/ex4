@@ -27,6 +27,7 @@ public:
     Merchant& operator=(const Merchant& other) = default;
 
 private:
+    void printInfo(std::ostream &os) const override;
 
     static const int HEALTH_POTION_COST = 5;
     static const int FORCE_BOOST_COST = 10;

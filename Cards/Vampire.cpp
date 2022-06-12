@@ -26,3 +26,8 @@ void Vampire::applyEncounter(Player &player){
         player.decreaseForce(1);
     }
 }
+
+void Vampire::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Vampire");
+    printEndOfCardDetails(os);
+}

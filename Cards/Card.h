@@ -41,6 +41,7 @@ public:
     */
     virtual void applyEncounter(Player& player) =0;
 
+
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
@@ -51,6 +52,10 @@ public:
 
 protected:
     CardType m_type;
+
+    friend std::ostream& operator<<(std::ostream& os, const Card& card);
+    virtual void printInfo(std::ostream &os) const = 0;
+
 };
 
 

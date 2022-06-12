@@ -25,3 +25,8 @@ void Goblin::applyEncounter(Player &player){
         player.damage(m_damage);
     }
 }
+
+void Goblin::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Goblin");
+    printEndOfCardDetails(os);
+}

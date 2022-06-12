@@ -19,7 +19,8 @@ public:
 
 private:
     int m_coins;
-
     static const int DEFAULT_COINS = 10;
+    void printInfo(std::ostream &os) const override;
+
 };
 #endif //EX4_TREASURE_H

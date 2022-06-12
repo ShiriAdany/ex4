@@ -26,3 +26,8 @@ void Dragon::applyEncounter(Player &player){
         player.damage(allHP);
     }
 }
+
+void Dragon::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Dragon");
+    printEndOfCardDetails(os);
+}

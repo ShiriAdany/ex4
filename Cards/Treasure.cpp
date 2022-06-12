@@ -13,4 +13,9 @@ void Treasure::applyEncounter(Player &player) {
     printTreasureMessage();
 }
 
+void Treasure::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Treasure");
+    printEndOfCardDetails(os);
+}
+
 

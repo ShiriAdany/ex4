@@ -19,6 +19,7 @@ public:
 
 private:
     int m_damage;
+    void printInfo(std::ostream &os) const override;
 
     static const int DEFAULT_DAMAGE = 10;
 

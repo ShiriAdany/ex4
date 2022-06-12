@@ -83,5 +83,10 @@ void Merchant::makeTrade(Player &player) {
     printMerchantSummary(std::cout,player.getName(),choice,cost);
 }
 
+void Merchant::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Merchant");
+    printEndOfCardDetails(os);
+}
+
 
 

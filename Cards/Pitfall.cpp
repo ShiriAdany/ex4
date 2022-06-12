@@ -17,3 +17,8 @@ void Pitfall::applyEncounter(Player &player) {
 Pitfall::Pitfall() : Card(CardType::Pitfall){
     m_damage = DEFAULT_DAMAGE;
 }
+
+void Pitfall::printInfo(std::ostream &os) const {
+    printCardDetails(os,"Pitfall");
+    printEndOfCardDetails(os);
+}

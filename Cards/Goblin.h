@@ -21,6 +21,7 @@ public:
     Goblin& operator=(const Goblin& other) = default;
 
 private:
+    void printInfo(std::ostream &os) const override;
 
     static const int DEFAULT_FORCE = 6;
     static const int DEFAULT_LOOT = 2;

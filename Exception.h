@@ -6,6 +6,7 @@
 #define EX4_EXCEPTION_H
 
 #include <exception>
+#include <string>
 
 class Exception: public std::exception
 {

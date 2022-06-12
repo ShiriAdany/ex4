@@ -18,7 +18,6 @@ class Wizard : public Player
         void heal(int hp) override;
 
 protected:
-    friend std::ostream& operator<<(std::ostream& os, const Wizard& player);
     void printInfo(std::ostream &os) const override;
 
 };

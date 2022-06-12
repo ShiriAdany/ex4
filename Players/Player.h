@@ -5,8 +5,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <string>
 #include "utilities.h"
+#include <iostream>
+#include <string>
+
+
 
 enum player_job {wizard, fighter, rogue};
 

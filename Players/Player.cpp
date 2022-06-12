@@ -4,7 +4,6 @@
 
 
 #include "Player.h"
-#include <iostream>
 
 
 Player::Player(std::string name, player_job job): m_name(name),
@@ -127,6 +126,11 @@ int Player::getHP() const {
 
 player_job Player::getJob() const {
     return m_job;
+}
+
+std::ostream &operator<<(std::ostream &os, const Player &player) {
+    player.printInfo(os);
+    return os;
 }
 
 

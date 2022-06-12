@@ -25,7 +25,3 @@ void Wizard::printInfo(std::ostream &os) const {
     printPlayerDetails(os,m_name,"Wizard",m_level,m_force,m_HP,m_coins);
 }
 
-std::ostream &operator<<(std::ostream &os, const Wizard &player) {
-    player.printInfo(os);
-    return os;
-}

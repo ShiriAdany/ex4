@@ -15,8 +15,5 @@ void Fighter::printInfo(std::ostream &os) const {
     printPlayerDetails(os, m_name,"Fighter",m_level,m_force,m_HP,m_coins);
 }
 
-std::ostream& operator<<(std::ostream& os, const Fighter& player) {
-    player.printInfo(os);
-    return os;
-}
+
 

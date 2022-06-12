@@ -19,7 +19,6 @@ public:
         int getAttackStrength() const override;
 
 protected:
-    friend std::ostream& operator<<(std::ostream& os, const Fighter& player);
     void printInfo(std::ostream &os) const override;
 };
 

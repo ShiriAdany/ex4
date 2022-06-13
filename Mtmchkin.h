@@ -71,8 +71,8 @@ public:
     int getNumberOfRounds() const;
 
 private:
-    std::deque<const Card*> m_deck;
-    std::deque<Player*>  m_playersQueue;
+    std::deque<std::unique_ptr<Card>> m_deck;
+    std::deque<std::unique_ptr<Player>>  m_playersQueue;
     int m_numberOfPlayers;
     int m_roundCounter;
 
@@ -83,10 +83,10 @@ private:
     static void printInvalidNumberOfArgumens();
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
-    void playCard(const Card* card, Player* player);
-//    template<class T>
-//    Card* createInstance();
-//    Card* mapToConstructor(std::string line);
+    void playCard(std::unique_ptr<Card> card, std::unique_ptr<Player> player);
+    template<class T>
+    Card* createInstance();
+    Card* mapToConstructor(std::string line);
 
 
     static int const NUMBER_OF_ARGUMENTS = 2; //player's name and class

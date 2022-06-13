@@ -256,11 +256,8 @@ void Mtmchkin::playCard(std::unique_ptr<Card> card, std::unique_ptr<Player> play
 }
 
 bool Mtmchkin::isGameOver() const {
-    for(const std::unique_ptr<Player> &p : m_playersQueue)
-    {
-        if(!p->isWinning() || !p->isLosing()) {
-            return false;
-        }
+    if(!m_activePlayers.empty()){
+        return false;
     }
     return true;
 }

@@ -113,7 +113,6 @@ void Mtmchkin::initiateDeck(const string fileName) {
 }
 
 void Mtmchkin::initiatePlayers() {
-    printEnterTeamSizeMessage();
     m_numberOfPlayers = getNumberOfPlayers();
 
     std::vector<string> words;
@@ -161,13 +160,16 @@ int Mtmchkin::getNumberOfPlayers() {
     int numberOfPlayers;
     bool valid = false;
     do{
+        printEnterTeamSizeMessage();
         std::getline(cin, input);
         numberOfPlayers = stoi(input);
         if(isdigit(numberOfPlayers) && numberOfPlayers <= 6 && numberOfPlayers >= 2 )
         {
             valid = true;
         }
-        printInvalidInput();
+        else{
+            printInvalidInput();
+        }
     }while(!valid);
 
     return numberOfPlayers;

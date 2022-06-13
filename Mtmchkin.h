@@ -3,24 +3,26 @@
 
 #include <string.h>
 #include "Exception.h"
+#include "utilities.h"
 
-#include "Card.h"
-#include "Goblin.h"
-#include "Vampire.h"
-#include "Dragon.h"
-#include "Merchant.h"
-#include "Pitfall.h"
-#include "Barfight.h"
-#include "Fairy.h"
-#include "Treasure.h"
+#include "Cards/Card.h"
+#include "Cards/Goblin.h"
+#include "Cards/Vampire.h"
+#include "Cards/Dragon.h"
+#include "Cards/Merchant.h"
+#include "Cards/Pitfall.h"
+#include "Cards/Barfight.h"
+#include "Cards/Fairy.h"
+#include "Cards/Treasure.h"
 
-#include "Rogue.h"
-#include "Fighter.h"
-#include "Wizard.h"
+#include "Players/Rogue.h"
+#include "Players/Fighter.h"
+#include "Players/Wizard.h"
 
 #include <fstream>
 #include <deque>
 #include <vector>
+#include <list>
 #include <memory>
 #include <map>
 
@@ -79,6 +81,10 @@ private:
     std::deque<std::unique_ptr<Player>>  m_playersQueue;
     int m_numberOfPlayers;
     int m_roundCounter;
+    std::vector<std::unique_ptr<Player>> m_winners;
+    std::vector<std::unique_ptr<Player>> m_losers;
+    std::vector<std::unique_ptr<Player>> m_activePlayers;
+
 
     void initiateDeck(std::string fileName);
     void initiatePlayers();
@@ -87,10 +93,15 @@ private:
     static void printInvalidNumberOfArgumens();
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
-    void playCard(std::unique_ptr<Card> card, std::unique_ptr<Player> player);
-    template<class T>
-    Card* createInstance();
-    Card* mapToConstructor(std::string line);
+    static void playCard(std::unique_ptr<Card> card, std::unique_ptr<Player> player);
+    void updateLeaderBoard();
+    void initiateLeaderBoard();
+
+
+
+//    template<class T>
+//    Card* createInstance();
+//    Card* mapToConstructor(std::string line);
 
 
     static const int  NUMBER_OF_ARGUMENTS = 2; //player's name and class

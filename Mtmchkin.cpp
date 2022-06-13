@@ -163,7 +163,7 @@ int Mtmchkin::getNumberOfPlayers() {
         printEnterTeamSizeMessage();
         std::getline(cin, input);
         numberOfPlayers = stoi(input);
-        if(isdigit(numberOfPlayers) && numberOfPlayers <= 6 && numberOfPlayers >= 2 )
+        if(input.find_first_not_of("0123456789") == std::string::npos && numberOfPlayers <= MAX_PLAYERS && numberOfPlayers >= MIN_PLAYERS )
         {
             valid = true;
         }

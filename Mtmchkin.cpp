@@ -229,14 +229,14 @@ void Mtmchkin::playRound() {
     std::unique_ptr<Player> currentPlayer;
     std::unique_ptr<Card> currentCard;
 
-    for(int i=0; i<m_numberOfPlayers; i++)
+    for(int i=0; i<m_activePlayers.size(); i++)
     {
             currentPlayer = std::move(m_activePlayers.at(i));
             printTurnStartMessage(currentPlayer->getName());
             currentCard = std::move(m_deck.at(i));
 
             playCard(std::move(currentCard), std::move(currentPlayer));
-            updateLeaderBoard();
+            updateLeaderBoard(i);
 
         if(isGameOver()){
             printGameEndMessage();
@@ -281,20 +281,19 @@ void Mtmchkin::printLeaderBoard() const {
     }
 }
 
-void Mtmchkin::updateLeaderBoard() {
-    for(int i=0; i<m_activePlayers.size(); i++)
+void Mtmchkin::updateLeaderBoard(int playerIndex) {
+
+    if(m_activePlayers.at(playerIndex)->isWinning())
     {
-        if(m_activePlayers.at(i)->isWinning())
-        {
-            m_winners.push_back(std::move(m_activePlayers.at(i)));
-            m_activePlayers.erase(m_activePlayers.begin() + i);
-        }
-        else if(m_activePlayers.at(i)-> isLosing())
-        {
-            m_losers.insert(m_losers.begin(),std::move(m_activePlayers.at(i)));
-            m_activePlayers.erase(m_activePlayers.begin() +i);
-        }
+        m_winners.push_back(std::move(m_activePlayers.at(playerIndex)));
+        m_activePlayers.erase(m_activePlayers.begin() + playerIndex);
     }
+    else if(m_activePlayers.at(playerIndex)-> isLosing())
+    {
+        m_losers.insert(m_losers.begin(),std::move(m_activePlayers.at(playerIndex)));
+        m_activePlayers.erase(m_activePlayers.begin() +playerIndex);
+    }
+
 }
 
 void Mtmchkin::initiateLeaderBoard() {

@@ -94,7 +94,7 @@ private:
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
     static void playCard(std::unique_ptr<Card> card, std::unique_ptr<Player> player);
-    void updateLeaderBoard();
+    void updateLeaderBoard(int playerIndex);
     void initiateLeaderBoard();
 
 

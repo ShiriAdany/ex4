@@ -70,6 +70,10 @@ public:
     */
     int getNumberOfRounds() const;
 
+    Mtmchkin(const Mtmchkin&) = delete;
+    ~Mtmchkin() = default;
+    Mtmchkin& operator=(const Mtmchkin& other) = default;
+
 private:
     std::deque<std::unique_ptr<Card>> m_deck;
     std::deque<std::unique_ptr<Player>>  m_playersQueue;
@@ -89,7 +93,9 @@ private:
     Card* mapToConstructor(std::string line);
 
 
-    static int const NUMBER_OF_ARGUMENTS = 2; //player's name and class
+    static const int  NUMBER_OF_ARGUMENTS = 2; //player's name and class
+    static const int MAX_PLAYERS = 6;
+    static const int MIN_PLAYERS = 2;
 
 };
 

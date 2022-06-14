@@ -4,13 +4,13 @@
 
 #include "Wizard.h"
 
-Wizard::Wizard(std::string name): Player(name, player_job::wizard){}
+Wizard::Wizard(std::string name): Player(name, "Wizard"){}
 
 
 void Wizard::heal(int hp)
 {
     while(hp > 0){
-        if(m_HP < MAX_HP) {
+        if(getHP() < MAX_HP) {
             m_HP += 2;
             hp--;
         }
@@ -22,6 +22,6 @@ void Wizard::heal(int hp)
 }
 
 void Wizard::printInfo(std::ostream &os) const {
-    printPlayerDetails(os,m_name,"Wizard",m_level,m_force,m_HP,m_coins);
+    printPlayerDetails(os, getName(), getJob(), getLevel(), getForce(), getHP(), getCoins());
 }
 

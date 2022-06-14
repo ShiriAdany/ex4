@@ -118,6 +118,11 @@ int Player::getCoins() const
     return m_coins;
 }
 
+int Player::getForce() const
+{
+    return m_force;
+}
+
 int Player::getAttackStrength() const
 {
     return (m_force + m_level);

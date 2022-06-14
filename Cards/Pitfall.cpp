@@ -6,7 +6,7 @@
 
 void Pitfall::applyEncounter(Player &player) const{
     bool isRogue = true;
-    if(player.getJob() != player_job::rogue)
+    if(player.getJob() != "Rogue")
     {
         isRogue = false;
         player.damage(m_damage);

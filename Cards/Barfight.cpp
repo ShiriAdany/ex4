@@ -10,7 +10,7 @@ Barfight::Barfight() :Card(CardType::Barfight){
 
 void Barfight::applyEncounter(Player &player) const {
     bool isFighter = true;
-    if(player.getJob() != player_job::fighter)
+    if(player.getJob() != "Fighter")
     {
         isFighter = false;
         player.damage(m_damage);

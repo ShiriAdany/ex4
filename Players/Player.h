@@ -104,6 +104,10 @@ public:
     // @return the number of coins the player has
     int getCoins() const;
     
+    // @return the player's force
+    int getForce() const;
+
+
     /*
      * Returns the attack strangth of the player.
      * Calculated by adding the force and the level of the player.
@@ -114,7 +118,6 @@ public:
 
 
 
-
     /*
      * Here we are explicitly telling the compiler to use the default methods
     */
@@ -122,20 +125,24 @@ public:
     Player(const Player& other) = default;
     Player& operator=(const Player& other) = default;
 
+protected:
 
-private:
-    
+    static const int MAX_HP = 100;
     static const int TOP_LEVEL = 10;
     static const int DEFAULT_FORCE = 5;
     static const int DEFAULT_COINS = 10;
 
+    int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
+    int m_coins; // number of coins
+
+private:
+    
+
+
     std::string m_name; // the name of the player, maximum 15 letters
     std::string m_job; // a player's job can be Wizard, Fighter or Rogue
     int m_level; // the level of the player, in range of [1,10]
-    int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
-    int m_coins; // number of coins
     int m_force; // the force of the player
-    static const int MAX_HP = 100;
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
     virtual void printInfo(std::ostream &os) const = 0;

@@ -6,12 +6,12 @@
 #include "Player.h"
 
 
-Player::Player(std::string name, player_job job): m_name(name),
-                                                           m_job(job),
-                                                           m_level(1),
-                                                           m_HP(MAX_HP),
-                                                           m_coins(DEFAULT_COINS),
-                                                           m_force(DEFAULT_FORCE)
+Player::Player(std::string name, std::string job): m_name(name),
+                                                   m_job(job),
+                                                   m_level(1),
+                                                   m_HP(MAX_HP),
+                                                   m_coins(DEFAULT_COINS),
+                                                   m_force(DEFAULT_FORCE)
 {}
 
 
@@ -22,11 +22,6 @@ void Player::levelUp()
     }
 }
 
-
-int Player::getLevel() const
-{
-    return m_level;
-}
 
 
 void Player::buff(int force)
@@ -97,22 +92,40 @@ bool Player::pay(int coins)
 }
 
 
+
+std::string Player::getName() const
+{
+    return m_name;
+}
+
+std::string Player::getJob() const
+{
+    return m_job;
+}
+
+int Player::getLevel() const
+{
+    return m_level;
+}
+
+int Player::getHP() const
+{
+    return m_HP;
+}
+
+int Player::getCoins() const
+{
+    return m_coins;
+}
+
 int Player::getAttackStrength() const
 {
     return (m_force + m_level);
 }
 
-std::string Player::getName() const{
-    return m_name;
-}
-
-int Player::getCoins() const{
-    return m_coins;
-}
-
-void Player::decreaseForce(int damage) {
-    if(m_force -damage >= 0)
-    {
+void Player::decreaseForce(int damage)
+{
+    if(m_force -damage >= 0){
         m_force -=damage;
     }
     else{
@@ -120,20 +133,8 @@ void Player::decreaseForce(int damage) {
     }
 }
 
-int Player::getHP() const {
-    return m_HP;
-}
-
-player_job Player::getJob() const {
-    return m_job;
-}
-
 std::ostream &operator<<(std::ostream &os, const Player &player) {
     player.printInfo(os);
     return os;
 }
-
-
-
-
 

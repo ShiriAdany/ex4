@@ -137,7 +137,7 @@ protected:
 
 private:
     
-
+    static const int MAX_NAME_LEN = 15;
 
     std::string m_name; // the name of the player, maximum 15 letters
     std::string m_job; // a player's job can be Wizard, Fighter or Rogue
@@ -146,7 +146,8 @@ private:
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
     virtual void printInfo(std::ostream &os) const = 0;
-
+    bool invalidName(std::string name);
+    bool invalidClass(std::string job);
 };
 
 #endif //PLAYER_H

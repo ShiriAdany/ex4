@@ -4,7 +4,7 @@
 
 
 #include "Player.h"
-
+using std::cin;
 
 Player::Player(std::string name, std::string job): m_name(name),
                                                    m_job(job),
@@ -12,8 +12,44 @@ Player::Player(std::string name, std::string job): m_name(name),
                                                    m_HP(MAX_HP),
                                                    m_coins(DEFAULT_COINS),
                                                    m_force(DEFAULT_FORCE)
-{}
+{
+    while(invalidName(name) || invalidClass(job)){
+        if(invalidName(name)){
+            printInvalidName();
+            cin >> name >> job;
+            continue;
+        }
+        if(invalidClass(job)){
+            printInvalidClass();
+            cin >> name >> job;
+            continue;
+        }   
+    }
+    m_name = name;
+    m_job = job;
+}
 
+bool Player::invalidName(std::string name)
+{
+    bool isInvalid = false;
+    if(name.std::string::length() > MAX_NAME_LEN){
+        isInvalid = true;
+    }
+    for(int i=0; i < name.std::string::length(); i++){
+        if(name[i] == ' ' || (name[i] < 'A' && name[i] != ' ') || name[i] > 'z' || (name[i] > 'Z' && name[i] < 'a'))
+            isInvalid = true;
+    }
+    return isInvalid;
+}
+
+bool Player::invalidClass(std::string job)
+{
+    bool isInvalid = false;
+    if(job != "Wizard" && job != "Fighter" && job != "Rogue"){
+        isInvalid = true;
+    }
+    return isInvalid;
+}
 
 void Player::levelUp()
 {

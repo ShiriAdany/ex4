@@ -11,8 +11,6 @@
 
 
 
-enum player_job {wizard, fighter, rogue};
-
 class Player{
 
 public:
@@ -25,7 +23,7 @@ public:
      * 
      * @return A new instance of Player.
     */
-    explicit Player(std::string name, player_job job);
+    explicit Player(std::string name, std::string job);
     
 
     /*
@@ -36,15 +34,6 @@ public:
 
 
     /*
-     * Returns the level of the player:
-     *
-     * @return
-     *      player's level.
-    */
-    int getLevel() const;
-
-
-    /*
      * Raises the force points:
      * @param force - the quantity of the force points to raise.
      *
@@ -52,12 +41,12 @@ public:
     void buff(int force);
 
 
-    virtual /*
+    /*
      * Raises the HP of the player according to the given argument, until the maxHP:
      * @param hp - the quantity of HP to raise.
      *
     */
-    void heal(int hp);
+    virtual void heal(int hp);
 
 
     /*
@@ -96,6 +85,29 @@ public:
     bool pay(int coins);
 
 
+    // @param damage - the amount of force the player loses
+    void decreaseForce(int damage);
+
+
+    // @return the player's name
+    std::string getName() const;
+
+    // @return the player's job
+    std::string getJob() const;
+
+    // @return player's level.
+    int getLevel() const;
+    
+    // @return the player's current health points
+    int getHP() const;
+
+    // @return the number of coins the player has
+    int getCoins() const;
+    
+    // @return the player's force
+    int getForce() const;
+
+
     /*
      * Returns the attack strangth of the player.
      * Calculated by adding the force and the level of the player.
@@ -104,15 +116,6 @@ public:
     */
     virtual int getAttackStrength() const;
 
-    std::string getName() const;
-
-    int getCoins() const;
-
-    int getHP() const;
-
-    player_job getJob() const;
-
-    void decreaseForce(int damage);
 
 
     /*
@@ -122,27 +125,29 @@ public:
     Player(const Player& other) = default;
     Player& operator=(const Player& other) = default;
 
-
 protected:
 
-    std::string m_name; // the name of the player, maximum 15 letters
-    player_job m_job; // a player's job can be wizard, fighter or rogue
-    int m_level; // the level of the player, in range of [1,10]
-    int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
-    int m_coins; // number of coins
-    int m_force; // the force of the player
     static const int MAX_HP = 100;
-
-    friend std::ostream& operator<<(std::ostream& os, const Player& player);
-    virtual void printInfo(std::ostream &os) const = 0;
-
-private:
-    
     static const int TOP_LEVEL = 10;
     static const int DEFAULT_FORCE = 5;
     static const int DEFAULT_COINS = 10;
 
+    int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
+    int m_coins; // number of coins
 
+private:
+    
+    static const int MAX_NAME_LEN = 15;
+
+    std::string m_name; // the name of the player, maximum 15 letters
+    std::string m_job; // a player's job can be Wizard, Fighter or Rogue
+    int m_level; // the level of the player, in range of [1,10]
+    int m_force; // the force of the player
+
+    friend std::ostream& operator<<(std::ostream& os, const Player& player);
+    virtual void printInfo(std::ostream &os) const = 0;
+    bool invalidName(std::string name);
+    bool invalidClass(std::string job);
 };
 
 #endif //PLAYER_H

@@ -5,7 +5,6 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "utilities.h"
 #include <iostream>
 #include <string>
 
@@ -63,6 +62,8 @@ public:
      * @return true if the HP is zero, false otherwise.
     */
     bool isKnockedOut() const;
+
+    bool isWinning() const;
 
 
      /*

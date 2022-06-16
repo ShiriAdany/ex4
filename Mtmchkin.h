@@ -26,6 +26,9 @@
 #include <memory>
 #include <map>
 
+
+
+
 class Mtmchkin{
 
 public:
@@ -37,7 +40,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    explicit Mtmchkin(const std::string fileName);
+    Mtmchkin(const std::string fileName);
     
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -72,18 +75,19 @@ public:
     */
     int getNumberOfRounds() const;
 
+
     Mtmchkin(const Mtmchkin&) = delete;
     ~Mtmchkin() = default;
     Mtmchkin& operator=(const Mtmchkin& other) = default;
 
 private:
     std::deque<std::unique_ptr<Card>> m_deck;
-    std::deque<std::unique_ptr<Player>>  m_playersQueue;
+    std::deque<std::unique_ptr<Player>> m_activePlayers;
     int m_numberOfPlayers;
     int m_roundCounter;
-    std::vector<std::unique_ptr<Player>> m_winners;
-    std::vector<std::unique_ptr<Player>> m_losers;
-    std::vector<std::unique_ptr<Player>> m_activePlayers;
+    std::deque<std::unique_ptr<Player>> m_winners;
+    std::deque<std::unique_ptr<Player>> m_losers;
+
 
 
     void initiateDeck(std::string fileName);
@@ -93,9 +97,9 @@ private:
     static void printInvalidNumberOfArgumens();
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
-    static void playCard(std::unique_ptr<Card> card, std::unique_ptr<Player> player);
-    void updateLeaderBoard(int playerIndex);
-    void initiateLeaderBoard();
+    static void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
+    //void updateLeaderBoard(int playerIndex);
+    //void initiateLeaderBoard();
 
 
 
@@ -104,9 +108,10 @@ private:
 //    Card* mapToConstructor(std::string line);
 
 
-    static const int  NUMBER_OF_ARGUMENTS = 2; //player's name and class
+    static const int NUMBER_OF_ARGUMENTS = 2; //player's name and class
     static const int MAX_PLAYERS = 6;
     static const int MIN_PLAYERS = 2;
+    static const int MAX_NAME_LEN = 15;
 
 };
 

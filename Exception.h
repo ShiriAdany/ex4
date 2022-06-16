@@ -42,11 +42,15 @@ public:
 
     const char* what() const override{
         std::string message = "Deck File Error: File format error in line " + std::to_string(m_line);
-        return message.c_str();
+        int len = message.length();
+        char *char_array = new char [len+1];
+        strcpy(char_array, message.c_str());
+        return char_array;
     }
 
 private:
     int m_line;
+
 };
 
 

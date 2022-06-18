@@ -6,20 +6,19 @@
 #define EX4_EXCEPTION_H
 
 #include <exception>
+#include <cstring>
 #include <string>
 
 class DeckExeptions: public std::exception
 {
 public:
-    const char* what() const override{
-        return exception::what();
-    };
+    virtual const char* what() const noexcept = 0;
 };
 
 class PlayerExeptions : public std::exception
 {
 public:
-    const char* what() const override{
+    const char* what() const noexcept override{
         return exception::what();
     };
 };
@@ -27,7 +26,7 @@ public:
 class InvalidName : public PlayerExeptions
 {
 public:
-    const char * what() const override
+    const char * what() const noexcept override
     {
         return "Player error: Invalid Name";
     }
@@ -36,7 +35,7 @@ public:
 
 class DeckFileNotFound : public DeckExeptions{
 public:
-    const char* what() const override
+    const char* what() const noexcept override
     {
         return "Deck File Error: File not found";
     };
@@ -45,7 +44,7 @@ public:
 
 class DeckFileInvalidSize: public DeckExeptions{
 public:
-    const char* what() const override
+    const char* what() const noexcept override
     {
         return "Deck File Error: Deck size is invalid";
     };
@@ -55,18 +54,14 @@ public:
 
 class DeckFileFormatError: public DeckExeptions{
 public:
-    DeckFileFormatError(int line): m_line(line){};
+    DeckFileFormatError(int line): message("Deck File Error: File format error in line " + std::to_string(line)){};
 
-    const char* what() const override{
-        std::string message = "Deck File Error: File format error in line " + std::to_string(m_line);
-        int len = message.length();
-        char *char_array = new char [len+1];
-        strcpy(char_array, message.c_str());
-        return char_array;
+    const char* what() const noexcept override{
+        return message.c_str();
     }
 
 private:
-    int m_line;
+    std::string message;
 
 };
 

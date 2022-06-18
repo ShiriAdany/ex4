@@ -4,7 +4,7 @@
 
 #include "Fighter.h"
 
-Fighter::Fighter(std::string name): Player(name, "Fighter"){}
+Fighter::Fighter(std::string name): Player(name){}
 
 
 int Fighter::getAttackStrength() const {
@@ -13,6 +13,10 @@ int Fighter::getAttackStrength() const {
 
 void Fighter::printInfo(std::ostream &os) const {
     printPlayerDetails(os, getName(), getJob() ,getLevel() ,getForce(), getHP(), getCoins());
+}
+
+std::string Fighter::getJob() const {
+    return "Fighter";
 }
 
 

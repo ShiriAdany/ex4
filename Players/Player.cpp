@@ -8,50 +8,41 @@
 
 using std::cin;
 
-Player::Player(std::string name, std::string job): m_name(name),
-                                                   m_job(job),
-                                                   m_level(1),
-                                                   m_HP(MAX_HP),
+Player::Player(std::string name):m_level(1), m_HP(MAX_HP),
                                                    m_coins(DEFAULT_COINS),
                                                    m_force(DEFAULT_FORCE)
 {
-    while(invalidName(name) || invalidClass(job)){
-        if(invalidName(name)){
-            printInvalidName();
-            cin >> name >> job;
-            continue;
-        }
-        if(invalidClass(job)){
-            printInvalidClass();
-            cin >> name >> job;
-            continue;
-        }   
+    if(invalidName(name))
+    {
+        throw InvalidName();
     }
     m_name = name;
-    m_job = job;
+
 }
 
 bool Player::invalidName(std::string name)
 {
     bool isInvalid = false;
-    if(name.std::string::length() > MAX_NAME_LEN){
+    if(name.length() > MAX_NAME_LEN){
         isInvalid = true;
     }
-    for(int i=0; i < name.length(); i++){
-        if(name[i] == ' ' || (name[i] < 'A' && name[i] != ' ') || name[i] > 'z' || (name[i] > 'Z' && name[i] < 'a'))
-            isInvalid = true;
+
+    for(char i : name){
+        if( !isalpha(i) || isspace(i)){
+            return false;
+        }
     }
     return isInvalid;
 }
 
-bool Player::invalidClass(std::string job)
-{
-    bool isInvalid = false;
-    if(job != "Wizard" && job != "Fighter" && job != "Rogue"){
-        isInvalid = true;
-    }
-    return isInvalid;
-}
+//bool Player::invalidClass(std::string job)
+//{
+//    bool isInvalid = false;
+//    if(job != "Wizard" && job != "Fighter" && job != "Rogue"){
+//        isInvalid = true;
+//    }
+//    return isInvalid;
+//}
 
 void Player::levelUp()
 {
@@ -145,10 +136,6 @@ std::string Player::getName() const
     return m_name;
 }
 
-std::string Player::getJob() const
-{
-    return m_job;
-}
 
 int Player::getLevel() const
 {

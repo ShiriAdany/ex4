@@ -6,18 +6,23 @@
 #define EX4_WIZARD_H
 
 #include "Player.h"
+#include "../utilities.h"
+
 
 class Wizard : public Player
 {
-    public:
-        Wizard(std::string name);
-        ~Wizard() override = default;
-        Wizard(const Wizard& other) = default;
-        Wizard& operator=(const Wizard& other) = default;
+public:
+    Wizard(std::string name);
 
-        void heal(int hp) override;
+    ~Wizard() override = default;
+    Wizard(const Wizard& other) = default;
+    Wizard& operator=(const Wizard& other) = default;
 
-protected:
+    void heal(int hp) override;
+    std::string getJob() const override;
+
+
+private:
     void printInfo(std::ostream &os) const override;
 
 };

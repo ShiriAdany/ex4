@@ -8,6 +8,8 @@
 #include <iostream>
 #include <string>
 
+#include "../Exception.h"
+
 
 
 class Player{
@@ -22,7 +24,7 @@ public:
      * 
      * @return A new instance of Player.
     */
-    explicit Player(std::string name, std::string job);
+    explicit Player(std::string name);
     
 
     /*
@@ -94,7 +96,7 @@ public:
     std::string getName() const;
 
     // @return the player's job
-    std::string getJob() const;
+    virtual std::string getJob() const = 0;
 
     // @return player's level.
     int getLevel() const;
@@ -141,14 +143,14 @@ private:
     static const int MAX_NAME_LEN = 15;
 
     std::string m_name; // the name of the player, maximum 15 letters
-    std::string m_job; // a player's job can be Wizard, Fighter or Rogue
+    //std::string m_job; // a player's job can be Wizard, Fighter or Rogue
     int m_level; // the level of the player, in range of [1,10]
     int m_force; // the force of the player
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
     virtual void printInfo(std::ostream &os) const = 0;
     bool invalidName(std::string name);
-    bool invalidClass(std::string job);
+    //bool invalidClass(std::string job);
 };
 
 #endif //PLAYER_H

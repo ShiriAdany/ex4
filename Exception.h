@@ -8,7 +8,7 @@
 #include <exception>
 #include <string>
 
-class Exception: public std::exception
+class DeckExeptions: public std::exception
 {
 public:
     const char* what() const override{
@@ -16,8 +16,25 @@ public:
     };
 };
 
+class PlayerExeptions : public std::exception
+{
+public:
+    const char* what() const override{
+        return exception::what();
+    };
+};
 
-class DeckFileNotFound : public Exception{
+class InvalidName : public PlayerExeptions
+{
+public:
+    const char * what() const override
+    {
+        return "Player error: Invalid Name";
+    }
+};
+
+
+class DeckFileNotFound : public DeckExeptions{
 public:
     const char* what() const override
     {
@@ -26,7 +43,7 @@ public:
 };
 
 
-class DeckFileInvalidSize: public Exception{
+class DeckFileInvalidSize: public DeckExeptions{
 public:
     const char* what() const override
     {
@@ -36,7 +53,7 @@ public:
 
 
 
-class DeckFileFormatError: public Exception{
+class DeckFileFormatError: public DeckExeptions{
 public:
     DeckFileFormatError(int line): m_line(line){};
 

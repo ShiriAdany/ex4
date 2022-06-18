@@ -293,17 +293,17 @@ void Mtmchkin::printLeaderBoard() const {
     printLeaderBoardStartMessage();
     int ranking = 1;
 
-    for(int i=0; i<m_winners.size(); i++)
+    for(unsigned int i=0; i<m_winners.size(); i++)
     {
         printPlayerLeaderBoard(ranking,*m_winners.at(i));
         ranking++;
     }
-    for(int i=0; i<m_activePlayers.size(); i++)
+    for(unsigned int i=0; i<m_activePlayers.size(); i++)
     {
         printPlayerLeaderBoard(ranking,*m_activePlayers.at(i));
         ranking++;
     }
-    for(int i=0; i<m_losers.size(); i++)
+    for(unsigned int i=0; i<m_losers.size(); i++)
     {
         printPlayerLeaderBoard(ranking,*m_losers.at(i));
         ranking++;

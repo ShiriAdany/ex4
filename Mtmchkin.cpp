@@ -138,24 +138,29 @@ bool Mtmchkin::isValidArguments(std::vector<string> words)
     std::unique_ptr<Player> newPlayer;
 
     if (validName(playerName)) {
-        if (playerClass == "Rogue") {
-            m_activePlayers.push_back(std::unique_ptr<Player>(new Rogue(playerName)));
-        } else if (playerClass == "Fighter") {
-            m_activePlayers.push_back(std::unique_ptr<Player>(new Fighter(playerName)));
-        } else if (playerClass == "Wizard") {
-            m_activePlayers.push_back(std::unique_ptr<Player>(new Wizard(playerName)));
-        } else {
-            printInvalidClass();
+        try{
+            if (playerClass == "Rogue") {
+                m_activePlayers.push_back(std::unique_ptr<Player>(new Rogue(playerName)));
+            } else if (playerClass == "Fighter") {
+                m_activePlayers.push_back(std::unique_ptr<Player>(new Fighter(playerName)));
+            } else if (playerClass == "Wizard") {
+                m_activePlayers.push_back(std::unique_ptr<Player>(new Wizard(playerName)));
+            } else {
+                printInvalidClass();
+                return false;
+            }
+        }
+        catch(const InvalidName& e)
+        {
+            printInvalidName();
             return false;
         }
-
-    } else {
+    }
+    else {
         printInvalidName();
         return false;
     }
-
     return true;
-
 }
 
 int Mtmchkin::getNumberOfPlayers() {
@@ -165,14 +170,20 @@ int Mtmchkin::getNumberOfPlayers() {
     do{
         printEnterTeamSizeMessage();
         std::getline(cin, input);
-        numberOfPlayers = stoi(input);
-        if(input.find_first_not_of("0123456789") == std::string::npos && numberOfPlayers <= MAX_PLAYERS && numberOfPlayers >= MIN_PLAYERS )
-        {
-            valid = true;
+        if(input.find_first_not_of("0123456789") == std::string::npos) {
+            numberOfPlayers = stoi(input);
+            if (numberOfPlayers <= MAX_PLAYERS && numberOfPlayers >= MIN_PLAYERS) {
+                valid = true;
+            }
+            else
+            {
+                printInvalidInput();
+            }
         }
         else{
             printInvalidInput();
         }
+
     }while(!valid);
 
     return numberOfPlayers;

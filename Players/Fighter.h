@@ -6,6 +6,8 @@
 #define EX4_FIGHTER_H
 
 #include "Player.h"
+#include "../utilities.h"
+
 
 class Fighter : public Player
 {
@@ -17,8 +19,9 @@ public:
         Fighter& operator=(const Fighter& other) = default;
 
         int getAttackStrength() const override;
+        std::string getJob() const override;
 
-protected:
+private:
     void printInfo(std::ostream &os) const override;
 };
 

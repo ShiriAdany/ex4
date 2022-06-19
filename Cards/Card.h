@@ -6,8 +6,8 @@
 #define EX4_CARD_H
 
 #include <string>
-#include "Player.h"
-#include "utilities.h"
+#include "../Players/Player.h"
+#include "../utilities.h"
 
 /*
  *  CardType:

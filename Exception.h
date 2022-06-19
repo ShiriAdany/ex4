@@ -6,29 +6,45 @@
 #define EX4_EXCEPTION_H
 
 #include <exception>
+#include <cstring>
 #include <string>
 
-class Exception: public std::exception
+class DeckExeptions: public std::exception
 {
 public:
-    const char* what() const override{
+    virtual const char* what() const noexcept = 0;
+};
+
+class PlayerExeptions : public std::exception
+{
+public:
+    const char* what() const noexcept override{
         return exception::what();
     };
 };
 
-
-class DeckFileNotFound : public Exception{
+class InvalidName : public PlayerExeptions
+{
 public:
-    const char* what() const override
+    const char * what() const noexcept override
+    {
+        return "Player error: Invalid Name";
+    }
+};
+
+
+class DeckFileNotFound : public DeckExeptions{
+public:
+    const char* what() const noexcept override
     {
         return "Deck File Error: File not found";
     };
 };
 
 
-class DeckFileInvalidSize: public Exception{
+class DeckFileInvalidSize: public DeckExeptions{
 public:
-    const char* what() const override
+    const char* what() const noexcept override
     {
         return "Deck File Error: Deck size is invalid";
     };
@@ -36,17 +52,17 @@ public:
 
 
 
-class DeckFileFormatError: public Exception{
+class DeckFileFormatError: public DeckExeptions{
 public:
-    DeckFileFormatError(int line): m_line(line){};
+    DeckFileFormatError(int line): message("Deck File Error: File format error in line " + std::to_string(line)){};
 
-    const char* what() const override{
-        std::string message = "Deck File Error: File format error in line " + std::to_string(m_line);
+    const char* what() const noexcept override{
         return message.c_str();
     }
 
 private:
-    int m_line;
+    std::string message;
+
 };
 
 

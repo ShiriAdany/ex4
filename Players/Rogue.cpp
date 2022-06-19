@@ -5,7 +5,7 @@
 #include "Rogue.h"
 using std::string;
 
-Rogue::Rogue(string name): Player(name, "Rogue") {
+Rogue::Rogue(string name): Player(name) {
 }
 
 void Rogue::addCoins(int coins)
@@ -18,6 +18,10 @@ void Rogue::addCoins(int coins)
 
 void Rogue::printInfo(std::ostream &os) const {
     printPlayerDetails(os, getName(), getJob(), getLevel(), getForce(), getHP(), getCoins());
+}
+
+std::string Rogue::getJob() const {
+    return "Rogue";
 }
 
 

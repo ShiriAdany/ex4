@@ -6,10 +6,18 @@
 using std::ifstream;
 using std::string;
 using std::cin;
+using std::endl;
 
 Mtmchkin::Mtmchkin(const string fileName): m_roundCounter(0) {
     printStartGameMessage();
-    initiateDeck(fileName);
+    
+    try{
+        initiateDeck(fileName);
+    }
+    catch(const Exception& e){
+        std::cerr << e.what() << endl;
+    }
+    
     m_numberOfPlayers = getNumberOfPlayers();
     initiatePlayers();
     m_activePlayers.reserve(m_numberOfPlayers);

@@ -90,6 +90,15 @@ private:
 
 
 
+    /*
+    *   initiating the deck of cards
+    *   
+    * @param fileName
+    * 
+    * @throws DeckFileNotFound
+    * @throws DeckFileFormatError
+    * @throws DeckFileInvalidSize
+    */
     void initiateDeck(std::string fileName);
     void initiatePlayers();
     static int getNumberOfPlayers();

@@ -1,6 +1,15 @@
 #include <iostream>
+#include "Mtmchkin.h"
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
+int main()
+{
+    Mtmchkin game ("deck.txt");
+
+    while(!game.isGameOver()){
+        game.playRound();
+    }
+
+    game.printLeaderBoard();
+
     return 0;
 }

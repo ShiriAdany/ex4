@@ -11,7 +11,7 @@ void Wizard::heal(int hp)
 {
     while(hp > 0){
         if(getHP() < MAX_HP) {
-            m_HP += 2;
+            Player::heal(2);
             hp--;
         }
 

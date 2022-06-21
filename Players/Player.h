@@ -135,8 +135,6 @@ protected:
     static const int DEFAULT_FORCE = 5;
     static const int DEFAULT_COINS = 10;
 
-    int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
-    int m_coins; // number of coins
 
 private:
     
@@ -145,6 +143,8 @@ private:
     std::string m_name; // the name of the player, maximum 15 letters
     //std::string m_job; // a player's job can be Wizard, Fighter or Rogue
     int m_level; // the level of the player, in range of [1,10]
+    int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
+    int m_coins; // number of coins
     int m_force; // the force of the player
 
     friend std::ostream& operator<<(std::ostream& os, const Player& player);

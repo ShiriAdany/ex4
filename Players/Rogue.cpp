@@ -12,7 +12,7 @@ void Rogue::addCoins(int coins)
 {
     if(coins>0)
     {
-        m_coins += (2*coins);
+        Player::addCoins(2*coins);
     }
 }
 

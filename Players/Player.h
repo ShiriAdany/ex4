@@ -141,7 +141,6 @@ private:
     static const int MAX_NAME_LEN = 15;
 
     std::string m_name; // the name of the player, maximum 15 letters
-    //std::string m_job; // a player's job can be Wizard, Fighter or Rogue
     int m_level; // the level of the player, in range of [1,10]
     int m_HP; // the amount of the health points of the player, in range of [0,maxHP]
     int m_coins; // number of coins
@@ -150,7 +149,7 @@ private:
     friend std::ostream& operator<<(std::ostream& os, const Player& player);
     virtual void printInfo(std::ostream &os) const = 0;
     bool invalidName(std::string name);
-    //bool invalidClass(std::string job);
+
 };
 
 #endif //PLAYER_H

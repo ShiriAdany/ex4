@@ -35,14 +35,6 @@ bool Player::invalidName(std::string name)
     return isInvalid;
 }
 
-//bool Player::invalidClass(std::string job)
-//{
-//    bool isInvalid = false;
-//    if(job != "Wizard" && job != "Fighter" && job != "Rogue"){
-//        isInvalid = true;
-//    }
-//    return isInvalid;
-//}
 
 void Player::levelUp()
 {

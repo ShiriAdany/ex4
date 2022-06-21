@@ -14,6 +14,7 @@
 #include "Cards/Barfight.h"
 #include "Cards/Fairy.h"
 #include "Cards/Treasure.h"
+#include "Cards/Gang.h"
 
 #include "Players/Rogue.h"
 #include "Players/Fighter.h"
@@ -40,7 +41,7 @@ public:
     * @return
     *      A new instance of Mtmchkin.
     */
-    Mtmchkin(const std::string fileName);
+    explicit Mtmchkin(const std::string &fileName);
     
     /*
     * Play the next Round of the game - according to the instruction in the exercise document.
@@ -78,7 +79,7 @@ public:
 
     Mtmchkin(const Mtmchkin&) = delete;
     ~Mtmchkin() = default;
-    Mtmchkin& operator=(const Mtmchkin& other) = default;
+    Mtmchkin& operator=(const Mtmchkin& other) = delete;
 
 private:
     std::deque<std::unique_ptr<Card>> m_deck;
@@ -88,17 +89,6 @@ private:
     std::deque<std::unique_ptr<Player>> m_winners;
     std::deque<std::unique_ptr<Player>> m_losers;
 
-
-
-    /*
-    *   initiating the deck of cards
-    *   
-    * @param fileName
-    * 
-    * @throws DeckFileNotFound
-    * @throws DeckFileFormatError
-    * @throws DeckFileInvalidSize
-    */
     void initiateDeck(std::string fileName);
     void initiatePlayers();
     static int getNumberOfPlayers();
@@ -106,16 +96,7 @@ private:
     static void printInvalidNumberOfArgumens();
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
-    static void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
-    //void updateLeaderBoard(int playerIndex);
-    //void initiateLeaderBoard();
-
-
-
-//    template<class T>
-//    Card* createInstance();
-//    Card* mapToConstructor(std::string line);
-
+    void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
 
     static const int NUMBER_OF_ARGUMENTS = 2; //player's name and class
     static const int MAX_PLAYERS = 6;

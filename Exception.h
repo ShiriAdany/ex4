@@ -23,6 +23,31 @@ public:
     };
 };
 
+class GangException : public std::exception
+{
+    virtual const char* what() const noexcept = 0;
+};
+
+class InvalidGangMember : public GangException
+{
+public:
+    const char * what() const noexcept override
+    {
+        return "Gang error: Invalid gang member, not a monster";
+    }
+};
+
+class NoEndGang: public GangException
+{
+public:
+    const char * what() const noexcept override
+    {
+        return "Gang error: Invalid gang, no endGang - unlimited gang";
+    }
+};
+
+
+
 class InvalidName : public PlayerExeptions
 {
 public:

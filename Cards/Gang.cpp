@@ -73,13 +73,10 @@ Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){
     }
 }
 
+
 void Gang::printInfo(std::ostream &os) const {
-
+    for(const std::unique_ptr<Card> &current : m_gang)
+    {
+        os << *current;
+    }
 }
-
-//void Gang::printInfo(std::ostream &os) const {
-//    for(const std::unique_ptr<Card> &current : m_gang)
-//    {
-//        current->printInfo(os);
-//    }
-//}

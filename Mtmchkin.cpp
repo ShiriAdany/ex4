@@ -29,53 +29,65 @@ void Mtmchkin::initiateDeck(const string fileName) {
     while(source.getline(line, sizeof(line)))
     {
         string cardName = line;
-        if(cardName == "Goblin")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Goblin()));
+        try {
+
+            addCard(cardName,lineNumber,source);
+            numberOfCards++;
+            lineNumber++;
         }
-        else if(cardName == "Vampire")
+        catch(...)
         {
-            m_deck.push_back(std::unique_ptr<Card>(new Vampire()));
+            throw;
         }
-        else if(cardName == "Dragon")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Dragon()));
-        }
-        else if(cardName == "Merchant")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Merchant()));
-        }
-        else if(cardName == "Treasure")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Treasure()));
-        }
-        else if(cardName == "Pitfall")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Pitfall()));
-        }
-        else if(cardName == "Barfight")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Barfight()));
-        }
-        else if(cardName == "Fairy")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Fairy()));
-        }
-        else if(cardName == "Gang")
-        {
-            m_deck.push_back(std::unique_ptr<Card>(new Gang(source, &lineNumber)));
-        }
-        else
-        {
-            throw DeckFileFormatError(lineNumber);
-        }
-        numberOfCards++;
-        lineNumber++;
     }
 
-    if(numberOfCards < 5)
+    if(numberOfCards < MIN_CARDS_NUMBER)
     {
         throw DeckFileInvalidSize();
+    }
+}
+
+void Mtmchkin::addCard(std::string cardName, int lineNumber, std::ifstream& source)
+{
+    if(cardName == "Goblin")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Goblin()));
+    }
+    else if(cardName == "Vampire")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Vampire()));
+    }
+    else if(cardName == "Dragon")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Dragon()));
+    }
+    else if(cardName == "Merchant")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Merchant()));
+    }
+    else if(cardName == "Treasure")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Treasure()));
+    }
+    else if(cardName == "Pitfall")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Pitfall()));
+    }
+    else if(cardName == "Barfight")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Barfight()));
+    }
+    else if(cardName == "Fairy")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Fairy()));
+    }
+    else if(cardName == "Gang")
+    {
+        m_deck.push_back(std::unique_ptr<Card>(new Gang(source, &lineNumber)));
+    }
+    else
+    {
+        throw DeckFileFormatError(lineNumber);
     }
 }
 

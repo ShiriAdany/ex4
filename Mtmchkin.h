@@ -96,12 +96,15 @@ private:
     static void printInvalidNumberOfArgumens();
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
-    void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
+    static void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
+    void addCard(std::string cardName, int lineNumber, std::ifstream& source);
+
 
     static const int NUMBER_OF_ARGUMENTS = 2; //player's name and class
     static const int MAX_PLAYERS = 6;
     static const int MIN_PLAYERS = 2;
     static const int MAX_NAME_LEN = 15;
+    static const int MIN_CARDS_NUMBER = 5;
 
 };
 

@@ -18,4 +18,8 @@ void Treasure::printInfo(std::ostream &os) const {
     printEndOfCardDetails(os);
 }
 
+std::string Treasure::getType() const {
+    return "Treasure";
+}
+
 

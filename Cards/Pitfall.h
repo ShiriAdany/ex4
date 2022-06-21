@@ -14,6 +14,8 @@ public:
 
     void applyEncounter(Player& player) const override;
 
+    std::string getType() const override;
+
     Pitfall(const Pitfall& other) = default;
     ~Pitfall() override = default;
     Pitfall& operator=(const Pitfall& other) = default;

@@ -6,6 +6,7 @@
 #define EX4_DRAGON_H
 
 #include "Battle.h"
+#include <limits.h>
 
 class Dragon : public Battle
 {
@@ -14,6 +15,9 @@ public:
 
     void applyEncounter(Player &player) const override;
 
+    std::string getType() const override;
+
+    int getDamage() const override;
     Dragon(const Dragon& other) = default;
     ~Dragon() override = default;
     Dragon& operator=(const Dragon& other) = default;

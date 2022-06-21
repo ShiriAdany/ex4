@@ -11,3 +11,17 @@ std::ostream &operator<<(std::ostream &os, const Card &card) {
     return os;
 }
 
+int Card::getForce() const {
+    return 0;
+}
+
+int Card::getLoot() const {
+    return 0;
+}
+
+int Card::getDamage() const {
+    return 0;
+}
+
+
+

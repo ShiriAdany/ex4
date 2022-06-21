@@ -14,6 +14,9 @@ public:
 
     void applyEncounter(Player &player) const override;
 
+    std::string getType() const override;
+
+
     Goblin(const Goblin& other) = default;
     ~Goblin() override = default;
     Goblin& operator=(const Goblin& other) = default;

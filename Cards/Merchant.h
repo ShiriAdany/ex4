@@ -22,6 +22,8 @@ public:
 
     static void makeTrade(Player &player);
 
+    std::string getType() const override;
+
     Merchant(const Merchant& other) = default;
     ~Merchant() override = default;
     Merchant& operator=(const Merchant& other) = default;

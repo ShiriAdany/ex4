@@ -23,5 +23,9 @@ void Fairy::printInfo(std::ostream &os) const {
     printEndOfCardDetails(os);
 }
 
+std::string Fairy::getType() const {
+    return "Fairy";
+}
+
 
 

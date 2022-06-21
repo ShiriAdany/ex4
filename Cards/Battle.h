@@ -13,9 +13,19 @@ public:
 
     virtual void applyEncounter(Player& player) const =0;
 
+    virtual std::string getType() const =0;
+
+    int getForce() const override;
+
+    int getLoot() const override;
+
+    int getDamage() const override;
+
     Battle(const Battle& other) = default;
-    ~Battle() override = default;
+    virtual ~Battle() override = default;
     Battle& operator=(const Battle& other) = default;
+
+
 
 protected:
     int m_force;

@@ -14,6 +14,8 @@ public:
 
     void applyEncounter(Player &player) const override;
 
+    std::string getType() const override;
+
     Vampire(const Vampire& other) = default;
     ~Vampire() override = default;
     Vampire& operator=(const Vampire& other) = default;

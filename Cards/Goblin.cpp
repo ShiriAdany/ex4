@@ -16,11 +16,11 @@ void Goblin::applyEncounter(Player &player) const{
     {
         player.levelUp();
         player.addCoins(m_loot);
-        printWinBattle(player.getName(), "Goblin");
+        printWinBattle(player.getName(), getType());
     }
     else{
         player.damage(m_damage);
-        printLossBattle(player.getName(), "Goblin");
+        printLossBattle(player.getName(), getType());
     }
 }
 
@@ -29,4 +29,8 @@ void Goblin::printInfo(std::ostream &os) const {
     printCardDetails(os,"Goblin");
     printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
+}
+
+std::string Goblin::getType() const {
+    return "Goblin";
 }

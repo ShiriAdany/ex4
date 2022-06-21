@@ -17,7 +17,7 @@
  *  HEAL - Increase your player's HP by 'm_heal' points  of CardStats (no more than maxHP points).
  *  TREASURE - Get 'm_profit' coins of CardStats.
 */
-enum class CardType {Goblin,Vampire,Dragon, Merchant, Pitfall, Treasure, Barfight, Fairy}; // The type of the Card
+enum class CardType {Goblin,Vampire,Dragon, Merchant, Pitfall, Treasure, Barfight, Fairy,Gang,EndGang}; // The type of the Card
 
 class Card {
 public:
@@ -41,6 +41,13 @@ public:
     */
     virtual void applyEncounter(Player& player) const =0;
 
+    virtual std::string getType() const =0;
+
+    virtual int getForce() const;
+
+    virtual int getLoot() const;
+
+    virtual int getDamage() const;
 
     /*
      * Here we are explicitly telling the compiler to use the default methods

@@ -23,4 +23,8 @@ void Barfight::printInfo(std::ostream &os) const {
     printEndOfCardDetails(os);
 }
 
+std::string Barfight::getType() const {
+    return "Barfight";
+}
+
 

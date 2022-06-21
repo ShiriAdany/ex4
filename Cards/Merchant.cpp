@@ -88,5 +88,9 @@ void Merchant::printInfo(std::ostream &os) const {
     printEndOfCardDetails(os);
 }
 
+std::string Merchant::getType() const {
+    return "Merchant";
+}
+
 
 

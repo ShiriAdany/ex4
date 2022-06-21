@@ -32,4 +32,15 @@ void Dragon::printInfo(std::ostream &os) const {
     printCardDetails(os,"Dragon");
     printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
+
 }
+
+std::string Dragon::getType() const {
+    return "Dragon";
+}
+
+int Dragon::getDamage() const {
+    return INT_MAX;
+}
+
+

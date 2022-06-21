@@ -22,3 +22,7 @@ void Pitfall::printInfo(std::ostream &os) const {
     printCardDetails(os,"Pitfall");
     printEndOfCardDetails(os);
 }
+
+std::string Pitfall::getType() const {
+    return "Pitfall";
+}

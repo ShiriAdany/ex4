@@ -32,3 +32,7 @@ void Vampire::printInfo(std::ostream &os) const {
     printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
 }
+
+std::string Vampire::getType() const {
+    return "Vampire";
+}

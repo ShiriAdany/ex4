@@ -14,6 +14,8 @@ public:
 
     void applyEncounter(Player& player) const override;
 
+    std::string getType() const override;
+
     Fairy(const Fairy& other) = default;
     ~Fairy() override = default;
     Fairy& operator=(const Fairy& other) = default;

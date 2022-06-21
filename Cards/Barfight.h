@@ -13,6 +13,8 @@ public:
 
     void applyEncounter(Player& player) const override;
 
+    std::string getType() const override;
+
     Barfight(const Barfight& other) = default;
     ~Barfight() override = default;
     Barfight& operator=(const Barfight& other) = default;

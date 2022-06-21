@@ -13,6 +13,8 @@ public:
 
     void applyEncounter(Player& player) const override;
 
+    std::string getType() const override;
+
     Treasure(const Treasure& other) = default;
     ~Treasure() override = default;
     Treasure& operator=(const Treasure& other) = default;

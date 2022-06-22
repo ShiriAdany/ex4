@@ -14,6 +14,10 @@ void Gang::applyEncounter(Player &player) const {
         if(isDefeated)
         {
             player.damage(current->getDamage());
+            if(current->getType() == "Vampire")
+            {
+                player.decreaseForce(1);
+            }
             printLossBattle(player.getName(), current->getType());
 
         }
@@ -25,6 +29,10 @@ void Gang::applyEncounter(Player &player) const {
         {
             isDefeated = true;
             player.damage(current->getDamage());
+            if(current->getType() == "Vampire")
+            {
+                player.decreaseForce(1);
+            }
             printLossBattle(player.getName(), current->getType());
         }
     }
@@ -41,10 +49,10 @@ std::string Gang::getType() const {
 }
 
 Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){
-    char line[256];
+    string cardName;
     bool endGang = false;
-    while(!endGang && source.getline(line, sizeof(line))) {
-        string cardName = line;
+    while(!endGang && getline(source,cardName)) {
+        (*lineNumber)++;
         if(cardName == "Vampire")
         {
             m_gang.push_back(std::unique_ptr<Card>(new Vampire()));
@@ -65,11 +73,11 @@ Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){
         {
             throw DeckFileFormatError(*lineNumber);
         }
-        (*lineNumber)++;
+
     }
     if(!endGang)
     {
-        throw NoEndGang(); //there wasn't an EndGang card.
+        throw DeckFileFormatError(*lineNumber); //there wasn't an EndGang card.
     }
 }
 

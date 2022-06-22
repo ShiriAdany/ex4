@@ -31,7 +31,7 @@ void Mtmchkin::initiateDeck(const string fileName) {
         string cardName = line;
         try {
 
-            addCard(cardName,lineNumber,source);
+            addCard(cardName,&lineNumber,source);
             numberOfCards++;
             lineNumber++;
         }
@@ -47,7 +47,7 @@ void Mtmchkin::initiateDeck(const string fileName) {
     }
 }
 
-void Mtmchkin::addCard(std::string cardName, int lineNumber, std::ifstream& source)
+void Mtmchkin::addCard(std::string cardName, int* lineNumber, std::ifstream& source)
 {
     if(cardName == "Goblin")
     {
@@ -83,11 +83,11 @@ void Mtmchkin::addCard(std::string cardName, int lineNumber, std::ifstream& sour
     }
     else if(cardName == "Gang")
     {
-        m_deck.push_back(std::unique_ptr<Card>(new Gang(source, &lineNumber)));
+        m_deck.push_back(std::unique_ptr<Card>(new Gang(source, lineNumber)));
     }
     else
     {
-        throw DeckFileFormatError(lineNumber);
+        throw DeckFileFormatError(*lineNumber);
     }
 }
 
@@ -237,12 +237,10 @@ void Mtmchkin::playRound() {
             if (p->isWinning()) {
                 m_winners.push_back(std::move(p));
                 m_activePlayers.at(index).reset();
-                //m_activePlayers.erase(m_activePlayers.begin() + index);
-                //index--;
+
             } else if (p->isKnockedOut()) {
                 m_losers.push_front(std::move(p));
                 m_activePlayers.at(index).reset();
-                //m_activePlayers.erase(m_activePlayers.begin() + index);
             }
 
             if (isGameOver()) {

@@ -80,3 +80,4 @@ void Gang::printInfo(std::ostream &os) const {
         os << *current;
     }
 }
+

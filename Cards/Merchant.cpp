@@ -23,14 +23,28 @@ int Merchant::getPlayerChoice(Player &player) {
     do{
 
         std::getline(cin, input);
-        choice = stoi(input);
-        if(choice >= Action::Number_Of_Options || choice < 0)
+        if(input.find_first_not_of("0123456789") == std::string::npos)
+        {
+            try{
+                choice = std::stoi(input);
+            }
+            catch(...) //cant convert to int- out of range
+            {
+                choice = Action::Number_Of_Options;
+            }
+            if(choice >= Action::Number_Of_Options || choice < 0)
+            {
+                printInvalidInput();
+            }
+            else{
+                endTurn = true;
+            }
+        }
+        else
         {
             printInvalidInput();
         }
-        else{
-            endTurn = true;
-        }
+
     }while(!endTurn);
 
     return choice;

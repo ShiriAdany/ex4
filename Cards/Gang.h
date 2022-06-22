@@ -23,7 +23,7 @@ public:
 
     std::string getType() const override;
 
-    Gang(const Gang& other) = default;
+    Gang(const Gang& other)= default;
     ~Gang() override = default;
     Gang& operator=(const Gang& other) = default;
 

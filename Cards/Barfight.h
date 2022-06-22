@@ -11,6 +11,13 @@ class Barfight : public Card{
 public:
     Barfight();
 
+    /*
+     * Handling the player's applyEncounter with the card:
+     *
+     * @param player - The player.
+     * @return
+     *      void
+    */
     void applyEncounter(Player& player) const override;
 
     std::string getType() const override;

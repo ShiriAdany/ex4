@@ -154,7 +154,7 @@ int Mtmchkin::getNumberOfPlayers() {
             }
             else
             {
-                printInvalidInput();
+                printInvalidTeamSize();
             }
         }
         else{

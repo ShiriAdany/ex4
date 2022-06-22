@@ -77,6 +77,7 @@ Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){
     }
     if(!endGang)
     {
+        (*lineNumber)++;
         throw DeckFileFormatError(*lineNumber); //there wasn't an EndGang card.
     }
 }

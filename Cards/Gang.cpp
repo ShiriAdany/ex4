@@ -90,3 +90,69 @@ void Gang::printInfo(std::ostream &os) const {
     }
 }
 
+Gang::Gang(const Gang& other): Card(CardType::Gang)
+{
+    for(const std::unique_ptr<Card> &current : other.m_gang)
+    {
+        if(current->getType() == "Vampire")
+        {
+            m_gang.push_back(std::unique_ptr<Card>(new Vampire()));
+        }
+        else if(current->getType() == "Goblin")
+        {
+            m_gang.push_back(std::unique_ptr<Card>(new Goblin()));
+        }
+        else if(current->getType() == "Dragon")
+        {
+            m_gang.push_back(std::unique_ptr<Card>(new Dragon()));
+        }
+        else
+        {
+            throw InvalidGangMember();
+        }
+    }
+}
+
+
+Gang& Gang::operator=(const Gang &other)
+{
+    if(this == &other)
+    {
+        return *this;
+    }
+
+    std::vector<std::unique_ptr<Card>> temp;
+    for(const std::unique_ptr<Card> &current : other.m_gang)    {
+        try
+        {
+            if(current->getType() == "Vampire")
+            {
+                temp.push_back(std::unique_ptr<Card>(new Vampire()));
+            }
+            else if(current->getType() == "Goblin")
+            {
+                temp.push_back(std::unique_ptr<Card>(new Goblin()));
+            }
+            else if(current->getType() == "Dragon")
+            {
+                temp.push_back(std::unique_ptr<Card>(new Dragon()));
+            }
+            else
+            {
+                throw InvalidGangMember();
+            }
+        }
+        catch(...)
+        {
+            throw;
+        }
+    }
+
+    m_gang.clear();
+    m_gang.reserve(temp.size());
+    for(unsigned int i=0; i<temp.size(); i++)
+    {
+        m_gang.at(i) = std::move(temp.at(i));
+    }
+    return *this;
+}

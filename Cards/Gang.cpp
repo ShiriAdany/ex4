@@ -14,6 +14,10 @@ void Gang::applyEncounter(Player &player) const {
         if(isDefeated)
         {
             player.damage(current->getDamage());
+            if(current->getType() == "Vampire")
+            {
+                player.decreaseForce(1);
+            }
             printLossBattle(player.getName(), current->getType());
 
         }
@@ -25,6 +29,10 @@ void Gang::applyEncounter(Player &player) const {
         {
             isDefeated = true;
             player.damage(current->getDamage());
+            if(current->getType() == "Vampire")
+            {
+                player.decreaseForce(1);
+            }
             printLossBattle(player.getName(), current->getType());
         }
     }
@@ -41,10 +49,10 @@ std::string Gang::getType() const {
 }
 
 Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){
-    char line[256];
+    string cardName;
     bool endGang = false;
-    while(!endGang && source.getline(line, sizeof(line))) {
-        string cardName = line;
+    while(!endGang && getline(source,cardName)) {
+        (*lineNumber)++;
         if(cardName == "Vampire")
         {
             m_gang.push_back(std::unique_ptr<Card>(new Vampire()));
@@ -65,11 +73,12 @@ Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){
         {
             throw DeckFileFormatError(*lineNumber);
         }
-        (*lineNumber)++;
+
     }
     if(!endGang)
     {
-        throw NoEndGang(); //there wasn't an EndGang card.
+        (*lineNumber)++;
+        throw DeckFileFormatError(*lineNumber); //there wasn't an EndGang card.
     }
 }
 
@@ -79,4 +88,71 @@ void Gang::printInfo(std::ostream &os) const {
     {
         os << *current;
     }
+}
+
+Gang::Gang(const Gang& other): Card(CardType::Gang)
+{
+    for(const std::unique_ptr<Card> &current : other.m_gang)
+    {
+        if(current->getType() == "Vampire")
+        {
+            m_gang.push_back(std::unique_ptr<Card>(new Vampire()));
+        }
+        else if(current->getType() == "Goblin")
+        {
+            m_gang.push_back(std::unique_ptr<Card>(new Goblin()));
+        }
+        else if(current->getType() == "Dragon")
+        {
+            m_gang.push_back(std::unique_ptr<Card>(new Dragon()));
+        }
+        else
+        {
+            throw InvalidGangMember();
+        }
+    }
+}
+
+
+Gang& Gang::operator=(const Gang &other)
+{
+    if(this == &other)
+    {
+        return *this;
+    }
+
+    std::vector<std::unique_ptr<Card>> temp;
+    for(const std::unique_ptr<Card> &current : other.m_gang)    {
+        try
+        {
+            if(current->getType() == "Vampire")
+            {
+                temp.push_back(std::unique_ptr<Card>(new Vampire()));
+            }
+            else if(current->getType() == "Goblin")
+            {
+                temp.push_back(std::unique_ptr<Card>(new Goblin()));
+            }
+            else if(current->getType() == "Dragon")
+            {
+                temp.push_back(std::unique_ptr<Card>(new Dragon()));
+            }
+            else
+            {
+                throw InvalidGangMember();
+            }
+        }
+        catch(...)
+        {
+            throw;
+        }
+    }
+
+    m_gang.clear();
+    m_gang.reserve(temp.size());
+    for(unsigned int i=0; i<temp.size(); i++)
+    {
+        m_gang.at(i) = std::move(temp.at(i));
+    }
+    return *this;
 }

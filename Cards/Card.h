@@ -17,7 +17,7 @@
  *  HEAL - Increase your player's HP by 'm_heal' points  of CardStats (no more than maxHP points).
  *  TREASURE - Get 'm_profit' coins of CardStats.
 */
-enum class CardType {Goblin,Vampire,Dragon, Merchant, Pitfall, Treasure, Barfight, Fairy,Gang,EndGang}; // The type of the Card
+enum class CardType {Goblin,Vampire,Dragon, Merchant, Pitfall, Treasure, Barfight, Fairy,Gang}; // The type of the Card
 
 class Card {
 public:
@@ -41,12 +41,16 @@ public:
     */
     virtual void applyEncounter(Player& player) const =0;
 
+    //Returns the type of the card
     virtual std::string getType() const =0;
 
+    //Returns the force of the card
     virtual int getForce() const;
 
+    //Returns the loot of the card
     virtual int getLoot() const;
 
+    //Returns the damage of the card
     virtual int getDamage() const;
 
     /*

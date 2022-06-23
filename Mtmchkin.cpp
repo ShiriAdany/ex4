@@ -23,21 +23,21 @@ void Mtmchkin::initiateDeck(const string fileName) {
         throw DeckFileNotFound();
     }
 
-    char line[256];
+    std::string line;
     int lineNumber = 1;
     int numberOfCards = 0;
-    while(source.getline(line, sizeof(line)))
+    while(getline(source, line))
     {
         string cardName = line;
         try {
 
-            addCard(cardName,lineNumber,source);
+            addCard(cardName,&lineNumber,source);
             numberOfCards++;
             lineNumber++;
         }
-        catch(...)
+        catch(DeckFileFormatError &e)
         {
-            throw;
+            throw DeckFileFormatError(lineNumber);
         }
     }
 
@@ -47,7 +47,7 @@ void Mtmchkin::initiateDeck(const string fileName) {
     }
 }
 
-void Mtmchkin::addCard(std::string cardName, int lineNumber, std::ifstream& source)
+void Mtmchkin::addCard(std::string cardName, int* lineNumber, std::ifstream& source)
 {
     if(cardName == "Goblin")
     {
@@ -83,11 +83,11 @@ void Mtmchkin::addCard(std::string cardName, int lineNumber, std::ifstream& sour
     }
     else if(cardName == "Gang")
     {
-        m_deck.push_back(std::unique_ptr<Card>(new Gang(source, &lineNumber)));
+        m_deck.push_back(std::unique_ptr<Card>(new Gang(source, lineNumber)));
     }
     else
     {
-        throw DeckFileFormatError(lineNumber);
+        throw DeckFileFormatError(*lineNumber);
     }
 }
 
@@ -148,17 +148,23 @@ int Mtmchkin::getNumberOfPlayers() {
         printEnterTeamSizeMessage();
         std::getline(cin, input);
         if(input.find_first_not_of("0123456789") == std::string::npos) {
-            numberOfPlayers = stoi(input);
+            try{
+                numberOfPlayers = stoi(input);
+            }
+            catch(...) //cant convert to int- out of range
+            {
+                numberOfPlayers = MIN_PLAYERS-1;
+            }
             if (numberOfPlayers <= MAX_PLAYERS && numberOfPlayers >= MIN_PLAYERS) {
                 valid = true;
             }
             else
             {
-                printInvalidInput();
+                printInvalidTeamSize();
             }
         }
         else{
-            printInvalidInput();
+            printInvalidTeamSize();
         }
 
     }while(!valid);
@@ -220,28 +226,26 @@ void Mtmchkin::playRound() {
 
     for(std::unique_ptr<Player> &p : m_activePlayers)
     {
-        printTurnStartMessage(p->getName());
-        currentCard = std::move(m_deck.front());
+        if(p!= nullptr) {
+            printTurnStartMessage(p->getName());
+            currentCard = std::move(m_deck.front());
 
-        m_deck.pop_front();
-        playCard(currentCard, p);
-        m_deck.push_back(std::move(currentCard));
+            m_deck.pop_front();
+            playCard(currentCard, p);
+            m_deck.push_back(std::move(currentCard));
 
-        if(p->isWinning())
-        {
-            m_winners.push_back(std::move(p));
-            m_activePlayers.erase(m_activePlayers.begin() + index);
-            index--;
-        }
-        else if(p-> isKnockedOut())
-        {
-            m_losers.push_front(std::move(p));
-            m_activePlayers.erase(m_activePlayers.begin() + index);
-            index--;
-        }
+            if (p->isWinning()) {
+                m_winners.push_back(std::move(p));
+                m_activePlayers.at(index).reset();
 
-        if(isGameOver()){
-            printGameEndMessage();
+            } else if (p->isKnockedOut()) {
+                m_losers.push_front(std::move(p));
+                m_activePlayers.at(index).reset();
+            }
+
+            if (isGameOver()) {
+                printGameEndMessage();
+            }
         }
         index++;
     }
@@ -259,8 +263,12 @@ void Mtmchkin::playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &pl
 }
 
 bool Mtmchkin::isGameOver() const {
-    if(!m_activePlayers.empty()){
-        return false;
+    for(const std::unique_ptr<Player> &p : m_activePlayers)
+    {
+        if(p != nullptr)
+        {
+            return false;
+        }
     }
     return true;
 }
@@ -276,8 +284,10 @@ void Mtmchkin::printLeaderBoard() const {
     }
     for(unsigned int i=0; i<m_activePlayers.size(); i++)
     {
-        printPlayerLeaderBoard(ranking,*m_activePlayers.at(i));
-        ranking++;
+        if(m_activePlayers.at(i)!= nullptr){
+            printPlayerLeaderBoard(ranking,*m_activePlayers.at(i));
+            ranking++;
+        }
     }
     for(unsigned int i=0; i<m_losers.size(); i++)
     {

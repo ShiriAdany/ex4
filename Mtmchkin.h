@@ -97,7 +97,7 @@ private:
     bool isValidArguments(std::vector<std::string>);
     static bool validName(const std::string& name);
     static void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
-    void addCard(std::string cardName, int lineNumber, std::ifstream& source);
+    void addCard(std::string cardName, int* lineNumber, std::ifstream& source);
 
 
     static const int NUMBER_OF_ARGUMENTS = 2; //player's name and class

@@ -23,9 +23,9 @@ public:
 
     std::string getType() const override;
 
-    Gang(const Gang& other) = default;
     ~Gang() override = default;
-    Gang& operator=(const Gang& other) = default;
+    Gang(const Gang& other);
+    Gang& operator=(const Gang& other);
 
 private:
     std::vector<std::unique_ptr<Card>> m_gang;

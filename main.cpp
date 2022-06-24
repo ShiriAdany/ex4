@@ -1,10 +1,7 @@
 #include <iostream>
 #include <string>
-#include <fstream>
 
-#include "Mtmchkin.h"
-#include "Cards/Gang.h"
-
+#include "../Mtmchkin.h"
 
 
 int main() {

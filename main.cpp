@@ -1,21 +1,25 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "Mtmchkin.h"
+#include "Cards/Gang.h"
 
 
-int main(int argc, char** argv) {
+
+int main() {
     try{
-        Mtmchkin game(argv[1]);
-        while(!game.isGameOver() && game.getNumberOfRounds() < 100){
+        Mtmchkin game("deck.txt");
+        while(!game.isGameOver()){
             game.playRound();
             game.printLeaderBoard();
         }
     }
-    catch(...)
+    catch(std::exception& e)
     {
-        return 0;
+        std::cout << e.what() << std::endl;
     }
 
     return 0;
 }
+

@@ -21,7 +21,7 @@ void Rogue::printInfo(std::ostream &os) const {
 }
 
 std::string Rogue::getJob() const {
-    return "Rogue";
+    return JOB;
 }
 
 

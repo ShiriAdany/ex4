@@ -26,6 +26,6 @@ void Wizard::printInfo(std::ostream &os) const {
 }
 
 std::string Wizard::getJob() const {
-    return "Wizard";
+    return JOB;
 }
 

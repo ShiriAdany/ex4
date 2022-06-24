@@ -12,17 +12,32 @@
 class Fighter : public Player
 {
 public:
-        Fighter(std::string name);
+    //C'tor of Fighter class
+    Fighter(std::string name);
 
-        ~Fighter() override = default;
-        Fighter(const Fighter& other) = default;
-        Fighter& operator=(const Fighter& other) = default;
+    /*
+     * Here we are explicitly telling the compiler to use the default methods
+    */
+    ~Fighter() override = default;
+    Fighter(const Fighter& other) = default;
+    Fighter& operator=(const Fighter& other) = default;
 
-        int getAttackStrength() const override;
-        std::string getJob() const override;
+    /*
+     * Returns the attack strangth of the player.
+     * Calculated by adding the force and the level of the player.
+     *
+     * @return The attack strength.
+    */
+    int getAttackStrength() const override;
+
+    //Returns the job of the player
+    std::string getJob() const override;
 
 private:
     void printInfo(std::ostream &os) const override;
+
+    const std::string JOB = "Fighter";
+
 };
 
 

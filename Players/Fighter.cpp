@@ -16,7 +16,7 @@ void Fighter::printInfo(std::ostream &os) const {
 }
 
 std::string Fighter::getJob() const {
-    return "Fighter";
+    return JOB;
 }
 
 

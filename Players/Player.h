@@ -65,6 +65,11 @@ public:
     */
     bool isKnockedOut() const;
 
+    /*
+     * Checks if the Level is top level:
+     *
+     * @return true if the level is topLevel, false otherwise.
+    */
     bool isWinning() const;
 
 

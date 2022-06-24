@@ -149,10 +149,6 @@ Gang& Gang::operator=(const Gang &other)
     }
 
     m_gang.clear();
-    m_gang.reserve(temp.size());
-    for(unsigned int i=0; i<temp.size(); i++)
-    {
-        m_gang.at(i) = std::move(temp.at(i));
-    }
+    m_gang = std::move(temp);
     return *this;
 }

@@ -45,7 +45,7 @@ void Gang::applyEncounter(Player &player) const {
 
 
 std::string Gang::getType() const {
-    return "Gang";
+    return TYPE;
 }
 
 Gang::Gang(std::ifstream &source, int *lineNumber) :Card(CardType::Gang){

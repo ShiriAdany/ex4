@@ -16,23 +16,23 @@ void Vampire::applyEncounter(Player &player) const{
     {
         player.levelUp();
         player.addCoins(m_loot);
-        printWinBattle(player.getName(), "Vampire");
+        printWinBattle(player.getName(), TYPE);
     }
     else{
         player.damage(m_damage);
         player.decreaseForce(1);
-        printLossBattle(player.getName(), "Vampire");
+        printLossBattle(player.getName(), TYPE);
 
     }
 }
 
 void Vampire::printInfo(std::ostream &os) const {
     bool isDragon = false;
-    printCardDetails(os,"Vampire");
+    printCardDetails(os,TYPE);
     printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
 }
 
 std::string Vampire::getType() const {
-    return "Vampire";
+    return TYPE;
 }

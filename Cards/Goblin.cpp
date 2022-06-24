@@ -26,11 +26,11 @@ void Goblin::applyEncounter(Player &player) const{
 
 void Goblin::printInfo(std::ostream &os) const {
     bool isDragon = false;
-    printCardDetails(os,"Goblin");
+    printCardDetails(os,TYPE);
     printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
 }
 
 std::string Goblin::getType() const {
-    return "Goblin";
+    return TYPE;
 }

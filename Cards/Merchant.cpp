@@ -98,12 +98,12 @@ void Merchant::makeTrade(Player &player) {
 }
 
 void Merchant::printInfo(std::ostream &os) const {
-    printCardDetails(os,"Merchant");
+    printCardDetails(os,TYPE);
     printEndOfCardDetails(os);
 }
 
 std::string Merchant::getType() const {
-    return "Merchant";
+    return TYPE;
 }
 
 

@@ -19,10 +19,10 @@ Pitfall::Pitfall() : Card(CardType::Pitfall){
 }
 
 void Pitfall::printInfo(std::ostream &os) const {
-    printCardDetails(os,"Pitfall");
+    printCardDetails(os,TYPE);
     printEndOfCardDetails(os);
 }
 
 std::string Pitfall::getType() const {
-    return "Pitfall";
+    return TYPE;
 }

@@ -16,27 +16,27 @@ void Dragon::applyEncounter(Player &player) const{
     {
         player.levelUp();
         player.addCoins(m_loot);
-        printWinBattle(player.getName(), "Dragon");
+        printWinBattle(player.getName(), TYPE);
 
     }
     else{
         int allHP = player.getHP();
         player.damage(allHP);
-        printLossBattle(player.getName(), "Dragon");
+        printLossBattle(player.getName(), TYPE);
 
     }
 }
 
 void Dragon::printInfo(std::ostream &os) const {
     bool isDragon = true;
-    printCardDetails(os,"Dragon");
+    printCardDetails(os,TYPE);
     printMonsterDetails(os,m_force,m_damage,m_loot,isDragon);
     printEndOfCardDetails(os);
 
 }
 
 std::string Dragon::getType() const {
-    return "Dragon";
+    return TYPE;
 }
 
 int Dragon::getDamage() const {

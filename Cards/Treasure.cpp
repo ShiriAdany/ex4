@@ -14,12 +14,12 @@ void Treasure::applyEncounter(Player &player) const{
 }
 
 void Treasure::printInfo(std::ostream &os) const {
-    printCardDetails(os,"Treasure");
+    printCardDetails(os,TYPE);
     printEndOfCardDetails(os);
 }
 
 std::string Treasure::getType() const {
-    return "Treasure";
+    return TYPE;
 }
 
 

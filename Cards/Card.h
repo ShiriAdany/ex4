@@ -60,11 +60,10 @@ public:
     virtual ~Card() = default;
     Card& operator=(const Card& other) = default;
 
+    friend std::ostream& operator<<(std::ostream& os, Card& card);
 
 protected:
     CardType m_type;
-
-    friend std::ostream& operator<<(std::ostream& os, const Card& card);
     virtual void printInfo(std::ostream &os) const = 0;
 
 };

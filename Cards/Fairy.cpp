@@ -19,12 +19,12 @@ void Fairy::applyEncounter(Player &player) const {
 }
 
 void Fairy::printInfo(std::ostream &os) const {
-    printCardDetails(os,"Fairy");
+    printCardDetails(os,TYPE);
     printEndOfCardDetails(os);
 }
 
 std::string Fairy::getType() const {
-    return "Fairy";
+    return TYPE;
 }
 
 

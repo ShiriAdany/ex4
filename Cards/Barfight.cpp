@@ -19,12 +19,12 @@ void Barfight::applyEncounter(Player &player) const {
 }
 
 void Barfight::printInfo(std::ostream &os) const {
-    printCardDetails(os,"Barfight");
+    printCardDetails(os,TYPE);
     printEndOfCardDetails(os);
 }
 
 std::string Barfight::getType() const {
-    return "Barfight";
+    return TYPE;
 }
 
 

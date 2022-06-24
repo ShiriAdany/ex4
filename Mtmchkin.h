@@ -89,14 +89,31 @@ private:
     std::deque<std::unique_ptr<Player>> m_winners;
     std::deque<std::unique_ptr<Player>> m_losers;
 
+    //Initiate the deck queue according to the given file
     void initiateDeck(std::string fileName);
+
+    //Initiate the queue of players according to the input from the user- Gets name and job.
     void initiatePlayers();
+
+    //Gets from the user the number of players that are going to play.
     static int getNumberOfPlayers();
+
+    //Gets from the user the name and the job.
     static std::vector<std::string> getPlayerArguments();
+
+    //print to the user an error about invalid players amount inserted.
     static void printInvalidNumberOfArgumens();
+
+    //Checks if the given arguments of the new player are valid.
     bool isValidArguments(std::vector<std::string>);
+
+    //Checks if the name of the player is valid.
     static bool validName(const std::string& name);
+
+    //Apply the card on the given player.
     static void playCard(std::unique_ptr<Card> &card, std::unique_ptr<Player> &player);
+
+    //Add new card to the deck of cards.
     void addCard(std::string cardName, int* lineNumber, std::ifstream& source);
 
 
